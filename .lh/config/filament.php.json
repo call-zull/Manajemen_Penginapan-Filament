@@ -1,0 +1,22 @@
+{
+    "sourceFile": "config/filament.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1716892575213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716893057872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,8 @@\n     |\n     | This will allow your users to receive real-time notifications.\n     |\n     */\n-    'brand' => 'Manajemen Penginapan',\n \n     'broadcasting' => [\n \n         // 'echo' => [\n"
+                }
+            ],
+            "date": 1716892575213,
+            "name": "Commit-0",
+            "content": "<?php\n\nreturn [\n\n    /*\n    |--------------------------------------------------------------------------\n    | Broadcasting\n    |--------------------------------------------------------------------------\n    |\n    | By uncommenting the Laravel Echo configuration, you may connect Filament\n    | to any Pusher-compatible websockets server.\n    |\n    | This will allow your users to receive real-time notifications.\n    |\n    */\n    'brand' => 'Manajemen Penginapan',\n\n    'broadcasting' => [\n\n        // 'echo' => [\n        //     'broadcaster' => 'pusher',\n        //     'key' => env('VITE_PUSHER_APP_KEY'),\n        //     'cluster' => env('VITE_PUSHER_APP_CLUSTER'),\n        //     'wsHost' => env('VITE_PUSHER_HOST'),\n        //     'wsPort' => env('VITE_PUSHER_PORT'),\n        //     'wssPort' => env('VITE_PUSHER_PORT'),\n        //     'authEndpoint' => '/api/v1/broadcasting/auth',\n        //     'disableStats' => true,\n        //     'encrypted' => true,\n        // ],\n\n    ],\n\n    /*\n    |--------------------------------------------------------------------------\n    | Default Filesystem Disk\n    |--------------------------------------------------------------------------\n    |\n    | This is the storage disk Filament will use to store files. You may use\n    | any of the disks defined in the `config/filesystems.php`.\n    |\n    */\n\n    'default_filesystem_disk' => env('FILAMENT_FILESYSTEM_DISK', 'public'),\n\n    /*\n    |--------------------------------------------------------------------------\n    | Assets Path\n    |--------------------------------------------------------------------------\n    |\n    | This is the directory where Filament's assets will be published to. It\n    | is relative to the `public` directory of your Laravel application.\n    |\n    | After changing the path, you should run `php artisan filament:assets`.\n    |\n    */\n\n    'assets_path' => null,\n\n    /*\n    |--------------------------------------------------------------------------\n    | Cache Path\n    |--------------------------------------------------------------------------\n    |\n    | This is the directory that Filament will use to store cache files that\n    | are used to optimize the registration of components.\n    |\n    | After changing the path, you should run `php artisan filament:cache-components`.\n    |\n    */\n\n    'cache_path' => base_path('bootstrap/cache/filament'),\n\n    /*\n    |--------------------------------------------------------------------------\n    | Livewire Loading Delay\n    |--------------------------------------------------------------------------\n    |\n    | This sets the delay before loading indicators appear.\n    |\n    | Setting this to 'none' makes indicators appear immediately, which can be\n    | desirable for high-latency connections. Setting it to 'default' applies\n    | Livewire's standard 200ms delay.\n    |\n    */\n\n    'livewire_loading_delay' => 'default',\n\n];"
+        }
+    ]
+}

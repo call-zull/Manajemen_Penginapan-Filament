@@ -1,0 +1,174 @@
+{
+    "sourceFile": "app/Filament/Resources/RoomResource.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 39,
+            "patches": [
+                {
+                    "date": 1716451853344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716453129880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,17 +22,52 @@\n     public static function form(Form $form): Form\n     {\n         return $form\n             ->schema([\n-                //\n+                Forms\\Components\\TextInput::make('No_Kamar')\n+                    ->required()\n+                    ->maxLength(255),\n+                Forms\\Components\\Select::make('Tipe')\n+                    ->relationship('type', 'Name')\n+                    ->required()\n+                    ->maxLength(255),\n+                Forms\\Components\\TextInput::make('Harga')\n+                    ->required()\n+                    ->numeric(),\n+                Forms\\Components\\Toggle::make('Is_People')\n+                    ->required(),\n+                Forms\\Components\\Toggle::make('Is_Clean')\n+                    ->required(),\n             ]);\n     }\n \n     public static function table(Table $table): Table\n     {\n         return $table\n             ->columns([\n-                //\n+                Tables\\Columns\\TextColumn::make('No_Kamar')\n+                    ->searchable(),\n+                Tables\\Columns\\TextColumn::make('Tipe')\n+                    ->searchable(),\n+                Tables\\Columns\\TextColumn::make('Harga')\n+                    ->numeric()\n+                    ->sortable(),\n+                Tables\\Columns\\IconColumn::make('Is_People')\n+                    ->boolean(),\n+                Tables\\Columns\\IconColumn::make('Is_Clean')\n+                    ->boolean(),\n+                Tables\\Columns\\TextColumn::make('created_at')\n+                    ->dateTime()\n+                    ->sortable()\n+                    ->toggleable(isToggledHiddenByDefault: true),\n+                Tables\\Columns\\TextColumn::make('updated_at')\n+                    ->dateTime()\n+                    ->sortable()\n+                    ->toggleable(isToggledHiddenByDefault: true),\n+                Tables\\Columns\\TextColumn::make('deleted_at')\n+                    ->dateTime()\n+                    ->sortable()\n+                    ->toggleable(isToggledHiddenByDefault: true),\n             ])\n             ->filters([\n                 //\n             ])\n"
+                },
+                {
+                    "date": 1716453254042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n             ->schema([\n                 Forms\\Components\\TextInput::make('No_Kamar')\n                     ->required()\n                     ->maxLength(255),\n-                Forms\\Components\\Select::make('Tipe')\n+                Forms\\Components\\Select::make('Type')\n                     ->relationship('type', 'Name')\n                     ->required()\n                     ->maxLength(255),\n                 Forms\\Components\\TextInput::make('Harga')\n"
+                },
+                {
+                    "date": 1716453316468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n             ->schema([\n                 Forms\\Components\\TextInput::make('No_Kamar')\n                     ->required()\n                     ->maxLength(255),\n-                Forms\\Components\\Select::make('Type')\n+                Forms\\Components\\Select::make('Tipe')\n                     ->relationship('type', 'Name')\n                     ->required()\n                     ->maxLength(255),\n                 Forms\\Components\\TextInput::make('Harga')\n"
+                },
+                {
+                    "date": 1716453379778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,9 @@\n                     ->required()\n                     ->maxLength(255),\n                 Forms\\Components\\Select::make('Tipe')\n                     ->relationship('type', 'Name')\n-                    ->required()\n-                    ->maxLength(255),\n+                    ->required(),\n                 Forms\\Components\\TextInput::make('Harga')\n                     ->required()\n                     ->numeric(),\n                 Forms\\Components\\Toggle::make('Is_People')\n"
+                },
+                {
+                    "date": 1716456469111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n             ->schema([\n                 Forms\\Components\\TextInput::make('No_Kamar')\n                     ->required()\n                     ->maxLength(255),\n-                Forms\\Components\\Select::make('Tipe')\n+                Forms\\Components\\Select::make('type_id')\n                     ->relationship('type', 'Name')\n                     ->required(),\n                 Forms\\Components\\TextInput::make('Harga')\n                     ->required()\n"
+                },
+                {
+                    "date": 1716456578545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,9 @@\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Tipe')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n+                    ->prefix('Rp. ')\n                     ->numeric()\n                     ->sortable(),\n                 Tables\\Columns\\IconColumn::make('Is_People')\n                     ->boolean(),\n"
+                },
+                {
+                    "date": 1716456730456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('Tipe')\n+                Tables\\Columns\\TextColumn::make('type_id')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n                     ->numeric()\n"
+                },
+                {
+                    "date": 1716456758350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('type_id')\n+                Tables\\Columns\\TextColumn::make('type_id.name')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n                     ->numeric()\n"
+                },
+                {
+                    "date": 1716456773227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('type_id.name')\n+                Tables\\Columns\\TextColumn::make('type_id')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n                     ->numeric()\n"
+                },
+                {
+                    "date": 1716461456987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,16 +45,19 @@\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('type_id')\n+                    ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n                     ->numeric()\n                     ->sortable(),\n                 Tables\\Columns\\IconColumn::make('Is_People')\n+                    ->label('Diisi')\n                     ->boolean(),\n                 Tables\\Columns\\IconColumn::make('Is_Clean')\n+                    ->label('Dibersihkan')\n                     ->boolean(),\n                 Tables\\Columns\\TextColumn::make('created_at')\n                     ->dateTime()\n                     ->sortable()\n"
+                },
+                {
+                    "date": 1716461496391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('type_id')\n+                Tables\\Columns\\TextColumn::make('type.Name')\n                     ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n"
+                },
+                {
+                    "date": 1716461554294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n                 Forms\\Components\\TextInput::make('Harga')\n                     ->required()\n                     ->numeric(),\n                 Forms\\Components\\Toggle::make('Is_People')\n+                    ->label('Diisi')\n                     ->required(),\n                 Forms\\Components\\Toggle::make('Is_Clean')\n                     ->required(),\n             ]);\n"
+                },
+                {
+                    "date": 1716461570245,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,9 @@\n                 Forms\\Components\\Toggle::make('Is_People')\n                     ->label('Diisi')\n                     ->required(),\n                 Forms\\Components\\Toggle::make('Is_Clean')\n+                    ->label('Dibersihkan')\n                     ->required(),\n             ]);\n     }\n \n"
+                },
+                {
+                    "date": 1716461674736,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n                 Forms\\Components\\TextInput::make('No_Kamar')\n                     ->required()\n                     ->maxLength(255),\n                 Forms\\Components\\Select::make('type_id')\n+                    ->label('Tipe Kamar')\n                     ->relationship('type', 'Name')\n                     ->required(),\n                 Forms\\Components\\TextInput::make('Harga')\n                     ->required()\n"
+                },
+                {
+                    "date": 1716461868770,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n             ->schema([\n                 Forms\\Components\\TextInput::make('No_Kamar')\n                     ->required()\n                     ->maxLength(255),\n-                Forms\\Components\\Select::make('type_id')\n+                Forms\\Components\\Select::make('Type_id')\n                     ->label('Tipe Kamar')\n                     ->relationship('type', 'Name')\n                     ->required(),\n                 Forms\\Components\\TextInput::make('Harga')\n"
+                },
+                {
+                    "date": 1716462215142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('type.Name')\n+                Tables\\Columns\\TextColumn::make('Type.Name')\n                     ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n"
+                },
+                {
+                    "date": 1716462300953,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('Type.Name')\n+                Tables\\Columns\\TextColumn::make('Type_id')\n                     ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n"
+                },
+                {
+                    "date": 1716462311066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('Type_id')\n+                Tables\\Columns\\TextColumn::make('Type.Name')\n                     ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n"
+                },
+                {
+                    "date": 1716462333055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('Type.Name')\n+                Tables\\Columns\\TextColumn::make('Type.name')\n                     ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n"
+                },
+                {
+                    "date": 1716462383791,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n                     ->required()\n                     ->maxLength(255),\n                 Forms\\Components\\Select::make('Type_id')\n                     ->label('Tipe Kamar')\n-                    ->relationship('type', 'Name')\n+                    ->relationship('Type', 'Name')\n                     ->required(),\n                 Forms\\Components\\TextInput::make('Harga')\n                     ->required()\n                     ->numeric(),\n"
+                },
+                {
+                    "date": 1716462503450,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('Type.name')\n+                Tables\\Columns\\TextColumn::make('Type_id')\n                     ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n"
+                },
+                {
+                    "date": 1716462510490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('Type_id')\n+                Tables\\Columns\\TextColumn::make('Type_Name')\n                     ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n"
+                },
+                {
+                    "date": 1716462522486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n             ->schema([\n                 Forms\\Components\\TextInput::make('No_Kamar')\n                     ->required()\n                     ->maxLength(255),\n-                Forms\\Components\\Select::make('Type_id')\n+                Forms\\Components\\Select::make('Type.Name')\n                     ->label('Tipe Kamar')\n                     ->relationship('Type', 'Name')\n                     ->required(),\n                 Forms\\Components\\TextInput::make('Harga')\n"
+                },
+                {
+                    "date": 1716462707741,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n             ->schema([\n                 Forms\\Components\\TextInput::make('No_Kamar')\n                     ->required()\n                     ->maxLength(255),\n-                Forms\\Components\\Select::make('Type.Name')\n+                Forms\\Components\\Select::make('Type_id')\n                     ->label('Tipe Kamar')\n                     ->relationship('Type', 'Name')\n                     ->required(),\n                 Forms\\Components\\TextInput::make('Harga')\n"
+                },
+                {
+                    "date": 1716462716018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('Type_Name')\n+                Tables\\Columns\\TextColumn::make('Type.Name')\n                     ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n"
+                },
+                {
+                    "date": 1716462726763,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('Type.Name')\n+                Tables\\Columns\\TextColumn::make('Type_id')\n                     ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n"
+                },
+                {
+                    "date": 1716463315569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('Type_id')\n+                Tables\\Columns\\TextColumn::make('Type.Name')\n                     ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n"
+                },
+                {
+                    "date": 1716463327272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('Type.Name')\n+                Tables\\Columns\\TextColumn::make('type.Name')\n                     ->label('Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->prefix('Rp. ')\n"
+                },
+                {
+                    "date": 1716463333173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n                     ->required()\n                     ->maxLength(255),\n                 Forms\\Components\\Select::make('Type_id')\n                     ->label('Tipe Kamar')\n-                    ->relationship('Type', 'Name')\n+                    ->relationship('type', 'Name')\n                     ->required(),\n                 Forms\\Components\\TextInput::make('Harga')\n                     ->required()\n                     ->numeric(),\n"
+                },
+                {
+                    "date": 1716464234586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,29 +16,26 @@\n class RoomResource extends Resource\n {\n     protected static ?string $model = Room::class;\n \n-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';\n+    protected static ?string $navigationIcon = 'fwb-s-building';\n \n     public static function form(Form $form): Form\n     {\n         return $form\n             ->schema([\n                 Forms\\Components\\TextInput::make('No_Kamar')\n                     ->required()\n                     ->maxLength(255),\n-                Forms\\Components\\Select::make('Type_id')\n-                    ->label('Tipe Kamar')\n-                    ->relationship('type', 'Name')\n+                Forms\\Components\\Select::make('type_id')\n+                    ->relationship('type', 'id')\n                     ->required(),\n                 Forms\\Components\\TextInput::make('Harga')\n                     ->required()\n                     ->numeric(),\n                 Forms\\Components\\Toggle::make('Is_People')\n-                    ->label('Diisi')\n                     ->required(),\n                 Forms\\Components\\Toggle::make('Is_Clean')\n-                    ->label('Dibersihkan')\n                     ->required(),\n             ]);\n     }\n \n@@ -47,20 +44,17 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('type.Name')\n-                    ->label('Tipe Kamar')\n-                    ->searchable(),\n+                Tables\\Columns\\TextColumn::make('type.id')\n+                    ->numeric()\n+                    ->sortable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n-                    ->prefix('Rp. ')\n                     ->numeric()\n                     ->sortable(),\n                 Tables\\Columns\\IconColumn::make('Is_People')\n-                    ->label('Diisi')\n                     ->boolean(),\n                 Tables\\Columns\\IconColumn::make('Is_Clean')\n-                    ->label('Dibersihkan')\n                     ->boolean(),\n                 Tables\\Columns\\TextColumn::make('created_at')\n                     ->dateTime()\n                     ->sortable()\n"
+                },
+                {
+                    "date": 1716464303093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n class RoomResource extends Resource\n {\n     protected static ?string $model = Room::class;\n \n-    protected static ?string $navigationIcon = 'fwb-s-building';\n+    protected static ?string $navigationIcon = 'heroicon-o-home';\n \n     public static function form(Form $form): Form\n     {\n         return $form\n"
+                },
+                {
+                    "date": 1716464338771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n class RoomResource extends Resource\n {\n     protected static ?string $model = Room::class;\n \n-    protected static ?string $navigationIcon = 'heroicon-o-home';\n+    protected static ?string $navigationIcon = 'heroicon-m-building-office';\n \n     public static function form(Form $form): Form\n     {\n         return $form\n"
+                },
+                {
+                    "date": 1716464620497,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,10 @@\n                 Forms\\Components\\TextInput::make('No_Kamar')\n                     ->required()\n                     ->maxLength(255),\n                 Forms\\Components\\Select::make('type_id')\n-                    ->relationship('type', 'id')\n+                    ->relationship('type', 'Name')\n+                    ->label('Tipe Kamar')\n                     ->required(),\n                 Forms\\Components\\TextInput::make('Harga')\n                     ->required()\n                     ->numeric(),\n"
+                },
+                {
+                    "date": 1716464676570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n-                Tables\\Columns\\TextColumn::make('type.id')\n+                Tables\\Columns\\TextColumn::make('type.Name')\n                     ->numeric()\n                     ->sortable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->numeric()\n"
+                },
+                {
+                    "date": 1716464721299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,10 +31,12 @@\n                     ->label('Tipe Kamar')\n                     ->required(),\n                 Forms\\Components\\TextInput::make('Harga')\n                     ->required()\n+                    ->label('Harga Kamar')\n                     ->numeric(),\n                 Forms\\Components\\Toggle::make('Is_People')\n+                    ->label('Diisi')\n                     ->required(),\n                 Forms\\Components\\Toggle::make('Is_Clean')\n                     ->required(),\n             ]);\n"
+                },
+                {
+                    "date": 1716464739770,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,9 @@\n                 Forms\\Components\\Toggle::make('Is_People')\n                     ->label('Diisi')\n                     ->required(),\n                 Forms\\Components\\Toggle::make('Is_Clean')\n+                    ->label('Dibersihkan')\n                     ->required(),\n             ]);\n     }\n \n"
+                },
+                {
+                    "date": 1716464798860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,16 +49,19 @@\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('type.Name')\n+                    ->label('Tipe Kamar')\n                     ->numeric()\n                     ->sortable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n                     ->numeric()\n                     ->sortable(),\n                 Tables\\Columns\\IconColumn::make('Is_People')\n+                    ->label('Diisi')\n                     ->boolean(),\n                 Tables\\Columns\\IconColumn::make('Is_Clean')\n+                    ->label('Dibersihkan')\n                     ->boolean(),\n                 Tables\\Columns\\TextColumn::make('created_at')\n                     ->dateTime()\n                     ->sortable()\n"
+                },
+                {
+                    "date": 1716891433430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,8 +53,9 @@\n                     ->label('Tipe Kamar')\n                     ->numeric()\n                     ->sortable(),\n                 Tables\\Columns\\TextColumn::make('Harga')\n+                    ->prefix('Rp. ')\n                     ->numeric()\n                     ->sortable(),\n                 Tables\\Columns\\IconColumn::make('Is_People')\n                     ->label('Diisi')\n"
+                },
+                {
+                    "date": 1716893087688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,13 @@\n     public static function table(Table $table): Table\n     {\n         return $table\n             ->columns([\n+                Tables\\Columns\\TextColumn::make('no_urut')\n+                ->label('No')\n+                ->getStateUsing(function ($rowLoop, $record) {\n+                    return $rowLoop->iteration;\n+                }),\n                 Tables\\Columns\\TextColumn::make('No_Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('type.Name')\n                     ->label('Tipe Kamar')\n"
+                }
+            ],
+            "date": 1716451853344,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources;\n\nuse App\\Filament\\Resources\\RoomResource\\Pages;\nuse App\\Filament\\Resources\\RoomResource\\RelationManagers;\nuse App\\Models\\Room;\nuse Filament\\Forms;\nuse Filament\\Forms\\Form;\nuse Filament\\Resources\\Resource;\nuse Filament\\Tables;\nuse Filament\\Tables\\Table;\nuse Illuminate\\Database\\Eloquent\\Builder;\nuse Illuminate\\Database\\Eloquent\\SoftDeletingScope;\n\nclass RoomResource extends Resource\n{\n    protected static ?string $model = Room::class;\n\n    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';\n\n    public static function form(Form $form): Form\n    {\n        return $form\n            ->schema([\n                //\n            ]);\n    }\n\n    public static function table(Table $table): Table\n    {\n        return $table\n            ->columns([\n                //\n            ])\n            ->filters([\n                //\n            ])\n            ->actions([\n                Tables\\Actions\\EditAction::make(),\n            ])\n            ->bulkActions([\n                Tables\\Actions\\BulkActionGroup::make([\n                    Tables\\Actions\\DeleteBulkAction::make(),\n                ]),\n            ]);\n    }\n\n    public static function getRelations(): array\n    {\n        return [\n            //\n        ];\n    }\n\n    public static function getPages(): array\n    {\n        return [\n            'index' => Pages\\ListRooms::route('/'),\n            'create' => Pages\\CreateRoom::route('/create'),\n            'edit' => Pages\\EditRoom::route('/{record}/edit'),\n        ];\n    }\n}"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "sourceFile": "vendor/filament/filament/src/Pages/Actions/ButtonAction.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1716901069836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716901108409,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,5 +8,6 @@\n  * @deprecated Use `\\Filament\\Actions\\Action` instead.\n  */\n class ButtonAction extends Action\n {\n+    \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901131588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,9 @@\n  * @deprecated Use `\\Filament\\Actions\\Action` instead.\n  */\n class ButtonAction extends Action\n {\n-    \n+    public static function getDefaultName(): ?string\n+    {\n+        return 'Cetak';\n+    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901869504,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n  * @deprecated Use `\\Filament\\Actions\\Action` instead.\n  */\n class ButtonAction extends Action\n {\n-    public static function getDefaultName(): ?string\n+    public static function getDefaultName($title): ?string\n     {\n-        return 'Cetak';\n+        return $title;\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901907779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n  * @deprecated Use `\\Filament\\Actions\\Action` instead.\n  */\n class ButtonAction extends Action\n {\n-    public static function getDefaultName($title): ?string\n+    public static function getDefaultName($title = null): ?string\n     {\n         return $title;\n     }\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1716901069836,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace Filament\\Pages\\Actions;\n\nuse Filament\\Actions\\Action as BaseAction;\n\n/**\n * @deprecated Use `\\Filament\\Actions\\Action` instead.\n */\nclass ButtonAction extends Action\n{\n}"
+        }
+    ]
+}

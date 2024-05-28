@@ -1,0 +1,50 @@
+{
+    "sourceFile": "app/Models/Room.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1716451824113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716451883546,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \n use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n use Illuminate\\Database\\Eloquent\\Model;\n \n-class Rooms extends Model\n+class Room extends Model\n {\n     use HasFactory;\n \n     protected $fillable = [\n"
+                },
+                {
+                    "date": 1716452940227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\Models;\n \n use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n use Illuminate\\Database\\Eloquent\\Model;\n+use Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;\n \n class Room extends Model\n {\n     use HasFactory;\n@@ -15,5 +16,10 @@\n         'Harga',\n         'Is_People',\n         'Is_Clean',\n     ];\n+\n+    public function type(): BelongsTo\n+    {\n+        return $this->belongsTo(Room::class);\n+    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716456046588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,7 +19,7 @@\n     ];\n \n     public function type(): BelongsTo\n     {\n-        return $this->belongsTo(Room::class);\n+        return $this->belongsTo(Type::class);\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716456403469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     use HasFactory;\n \n     protected $fillable = [\n         'No_Kamar',\n-        'Tipe',\n+        'types_id',\n         'Harga',\n         'Is_People',\n         'Is_Clean',\n     ];\n"
+                },
+                {
+                    "date": 1716456500715,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     use HasFactory;\n \n     protected $fillable = [\n         'No_Kamar',\n-        'types_id',\n+        'type_id',\n         'Harga',\n         'Is_People',\n         'Is_Clean',\n     ];\n"
+                },
+                {
+                    "date": 1716462120532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     use HasFactory;\n \n     protected $fillable = [\n         'No_Kamar',\n-        'type_id',\n+        'Type_id',\n         'Harga',\n         'Is_People',\n         'Is_Clean',\n     ];\n"
+                },
+                {
+                    "date": 1716462374742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n         'Is_People',\n         'Is_Clean',\n     ];\n \n-    public function type(): BelongsTo\n+    public function Type(): BelongsTo\n     {\n         return $this->belongsTo(Type::class);\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716463350553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     use HasFactory;\n \n     protected $fillable = [\n         'No_Kamar',\n-        'Type_id',\n+        'type_id',\n         'Harga',\n         'Is_People',\n         'Is_Clean',\n     ];\n"
+                }
+            ],
+            "date": 1716451824113,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\n\nclass Rooms extends Model\n{\n    use HasFactory;\n\n    protected $fillable = [\n        'No_Kamar',\n        'Tipe',\n        'Harga',\n        'Is_People',\n        'Is_Clean',\n    ];\n}"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "composer.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1716357807898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716358319142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     \"license\": \"MIT\",\n     \"require\": {\n         \"php\": \"^8.2\",\n         \"laravel/framework\": \"^11.0\",\n-        \"filament/filament\": \"^3.2.0\",\n+        \"filament/filament\": \"3.2.57\",\n         \"laravel/tinker\": \"^2.9\"\n     },\n     \"require-dev\": {\n         \"fakerphp/faker\": \"^1.23\",\n"
+                }
+            ],
+            "date": 1716357807898,
+            "name": "Commit-0",
+            "content": "{\n    \"name\": \"laravel/laravel\",\n    \"type\": \"project\",\n    \"description\": \"The skeleton application for the Laravel framework.\",\n    \"keywords\": [\"laravel\", \"framework\"],\n    \"license\": \"MIT\",\n    \"require\": {\n        \"php\": \"^8.2\",\n        \"laravel/framework\": \"^11.0\",\n        \"filament/filament\": \"^3.2.0\",\n        \"laravel/tinker\": \"^2.9\"\n    },\n    \"require-dev\": {\n        \"fakerphp/faker\": \"^1.23\",\n        \"laravel/pint\": \"^1.13\",\n        \"laravel/sail\": \"^1.26\",\n        \"mockery/mockery\": \"^1.6\",\n        \"nunomaduro/collision\": \"^8.0\",\n        \"phpunit/phpunit\": \"^11.0.1\",\n        \"spatie/laravel-ignition\": \"^2.4\"\n    },\n    \"autoload\": {\n        \"psr-4\": {\n            \"App\\\\\": \"app/\",\n            \"Database\\\\Factories\\\\\": \"database/factories/\",\n            \"Database\\\\Seeders\\\\\": \"database/seeders/\"\n        }\n    },\n    \"autoload-dev\": {\n        \"psr-4\": {\n            \"Tests\\\\\": \"tests/\"\n        }\n    },\n    \"scripts\": {\n        \"post-autoload-dump\": [\n            \"Illuminate\\\\Foundation\\\\ComposerScripts::postAutoloadDump\",\n            \"@php artisan package:discover --ansi\"\n        ],\n        \"post-update-cmd\": [\n            \"@php artisan vendor:publish --tag=laravel-assets --ansi --force\"\n        ],\n        \"post-root-package-install\": [\n            \"@php -r \\\"file_exists('.env') || copy('.env.example', '.env');\\\"\"\n        ],\n        \"post-create-project-cmd\": [\n            \"@php artisan key:generate --ansi\",\n            \"@php -r \\\"file_exists('database/database.sqlite') || touch('database/database.sqlite');\\\"\",\n            \"@php artisan migrate --graceful --ansi\"\n        ]\n    },\n    \"extra\": {\n        \"laravel\": {\n            \"dont-discover\": []\n        }\n    },\n    \"config\": {\n        \"optimize-autoloader\": true,\n        \"preferred-install\": \"dist\",\n        \"sort-packages\": true,\n        \"allow-plugins\": {\n            \"pestphp/pest-plugin\": true,\n            \"php-http/discovery\": true\n        }\n    },\n    \"minimum-stability\": \"stable\",\n    \"prefer-stable\": true\n}\n"
+        }
+    ]
+}

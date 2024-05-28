@@ -1,0 +1,78 @@
+{
+    "sourceFile": "app/Filament/Resources/InvoiceResource/Pages/ListInvoices.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 15,
+            "patches": [
+                {
+                    "date": 1716899915736,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716900358756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n <?php\n \n namespace App\\Filament\\Resources\\InvoiceResource\\Pages;\n \n-use App\\Filament\\Resources\\InvoiceResource;\n use Filament\\Actions;\n+use Filament\\Pages\\Actions\\ButtonAction;\n+use Filament\\Pages\\Actions\\CreateAction;\n use Filament\\Resources\\Pages\\ListRecords;\n+use App\\Filament\\Resources\\InvoiceResource;\n \n class ListInvoices extends ListRecords\n {\n     protected static string $resource = InvoiceResource::class;\n"
+                },
+                {
+                    "date": 1716900673056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,8 @@\n     protected function getHeaderActions(): array\n     {\n         return [\n             Actions\\CreateAction::make(),\n-            Actions\\ButtonAction::make(),\n+            Actions\\ButtonAction::make(''),,\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716900885345,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,8 @@\n     protected function getHeaderActions(): array\n     {\n         return [\n             Actions\\CreateAction::make(),\n-            Actions\\ButtonAction::make(''),,\n+            Actions\\CreateAction::make(),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716900913379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,11 @@\n <?php\n \n namespace App\\Filament\\Resources\\InvoiceResource\\Pages;\n \n+use App\\Filament\\Resources\\InvoiceResource;\n use Filament\\Actions;\n-use Filament\\Pages\\Actions\\ButtonAction;\n-use Filament\\Pages\\Actions\\CreateAction;\n use Filament\\Resources\\Pages\\ListRecords;\n-use App\\Filament\\Resources\\InvoiceResource;\n \n class ListInvoices extends ListRecords\n {\n     protected static string $resource = InvoiceResource::class;\n@@ -15,8 +13,7 @@\n     protected function getHeaderActions(): array\n     {\n         return [\n             Actions\\CreateAction::make(),\n-            Actions\\CreateAction::make(),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901101439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n <?php\n \n namespace App\\Filament\\Resources\\InvoiceResource\\Pages;\n \n-use App\\Filament\\Resources\\InvoiceResource;\n use Filament\\Actions;\n+use Filament\\Pages\\Actions\\ButtonAction;\n use Filament\\Resources\\Pages\\ListRecords;\n+use App\\Filament\\Resources\\InvoiceResource;\n \n class ListInvoices extends ListRecords\n {\n     protected static string $resource = InvoiceResource::class;\n@@ -13,7 +14,8 @@\n     protected function getHeaderActions(): array\n     {\n         return [\n             Actions\\CreateAction::make(),\n+            ButtonAction::make()\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901337352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n     protected function getHeaderActions(): array\n     {\n         return [\n+            ButtonAction::make(),\n             Actions\\CreateAction::make(),\n-            ButtonAction::make()\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901556560,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n     protected function getHeaderActions(): array\n     {\n         return [\n-            ButtonAction::make(),\n+            ButtonAction::make()->color('danger'),\n             Actions\\CreateAction::make(),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901636191,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n     protected function getHeaderActions(): array\n     {\n         return [\n-            ButtonAction::make()->color('danger'),\n+            ButtonAction::make()->color('gray'),\n             Actions\\CreateAction::make(),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901648223,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n     protected function getHeaderActions(): array\n     {\n         return [\n-            ButtonAction::make()->color('gray'),\n+            ButtonAction::make()->color('info'),\n             Actions\\CreateAction::make(),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901661320,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n     protected function getHeaderActions(): array\n     {\n         return [\n-            ButtonAction::make()->color('info'),\n+            ButtonAction::make()->color('primary'),\n             Actions\\CreateAction::make(),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901689567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n     protected function getHeaderActions(): array\n     {\n         return [\n-            ButtonAction::make()->color('primary'),\n+            ButtonAction::make()->color('success'),\n             Actions\\CreateAction::make(),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901701113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n     protected function getHeaderActions(): array\n     {\n         return [\n-            ButtonAction::make()->color('success'),\n+            ButtonAction::make()->color('warning'),\n             Actions\\CreateAction::make(),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716901881050,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n     protected function getHeaderActions(): array\n     {\n         return [\n-            ButtonAction::make()->color('warning'),\n+            ButtonAction::make('Cetak Invoice')->color('warning'),\n             Actions\\CreateAction::make(),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716902122851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n     protected function getHeaderActions(): array\n     {\n         return [\n-            ButtonAction::make('Cetak Invoice')->color('warning'),\n+            ButtonAction::make('Cetak Invoice')->color('warning')->url(fn()=> route('download.tes'))->openUrlInNewTab(),\n             Actions\\CreateAction::make(),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716908016454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n     protected function getHeaderActions(): array\n     {\n         return [\n-            ButtonAction::make('Cetak Invoice')->color('warning')->url(fn()=> route('download.tes'))->openUrlInNewTab(),\n+            // ButtonAction::make('Cetak Invoice')->color('warning')->url(fn()=> route('download.tes'))->openUrlInNewTab(),\n             Actions\\CreateAction::make(),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1716899915736,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources\\InvoiceResource\\Pages;\n\nuse App\\Filament\\Resources\\InvoiceResource;\nuse Filament\\Actions;\nuse Filament\\Resources\\Pages\\ListRecords;\n\nclass ListInvoices extends ListRecords\n{\n    protected static string $resource = InvoiceResource::class;\n\n    protected function getHeaderActions(): array\n    {\n        return [\n            Actions\\CreateAction::make(),\n            Actions\\ButtonAction::make(),\n        ];\n    }\n}"
+        }
+    ]
+}

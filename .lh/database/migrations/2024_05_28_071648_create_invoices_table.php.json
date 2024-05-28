@@ -1,0 +1,30 @@
+{
+    "sourceFile": "database/migrations/2024_05_28_071648_create_invoices_table.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1716882348723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716882677305,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,10 @@\n     {\n         Schema::create('invoices', function (Blueprint $table) {\n             $table->id();\n             $table->date('check_in')->nullable(false);\n+            $table->date('check_out')->nullable(false);\n+            $table->string('name_pelanggan')->nullable(false);\n             $table->timestamps();\n         });\n     }\n \n"
+                },
+                {
+                    "date": 1716886784683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,10 @@\n         Schema::create('invoices', function (Blueprint $table) {\n             $table->id();\n             $table->date('check_in')->nullable(false);\n             $table->date('check_out')->nullable(false);\n-            $table->string('name_pelanggan')->nullable(false);\n+            $table->foreignId('room_id')->constrained('rooms');\n+            $table->string('name_customer')->nullable(false);\n             $table->timestamps();\n         });\n     }\n \n"
+                },
+                {
+                    "date": 1716910642647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n     public function up(): void\n     {\n         Schema::create('invoices', function (Blueprint $table) {\n             $table->id();\n+            $table->string('invoice_number')->nullable()->unique();\n             $table->date('check_in')->nullable(false);\n             $table->date('check_out')->nullable(false);\n             $table->foreignId('room_id')->constrained('rooms');\n             $table->string('name_customer')->nullable(false);\n"
+                }
+            ],
+            "date": 1716882348723,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration\n{\n    /**\n     * Run the migrations.\n     */\n    public function up(): void\n    {\n        Schema::create('invoices', function (Blueprint $table) {\n            $table->id();\n            $table->date('check_in')->nullable(false);\n            $table->timestamps();\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     */\n    public function down(): void\n    {\n        Schema::dropIfExists('invoices');\n    }\n};"
+        }
+    ]
+}

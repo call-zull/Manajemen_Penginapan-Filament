@@ -1,0 +1,54 @@
+{
+    "sourceFile": "routes/web.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1716902255879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716902274810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,5 +7,5 @@\n });\n \n Route::get('download', function () {\n     return 'cek latihan';\n-});\n\\ No newline at end of file\n+})->name('download.tes');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716902815461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n use Illuminate\\Support\\Facades\\Route;\n \n Route::get('/', function () {\n-    return view('welcome');\n+    return redirect('/admin');\n });\n \n Route::get('download', function () {\n     return 'cek latihan';\n"
+                },
+                {
+                    "date": 1716903177010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,10 @@\n <?php\n \n+use App\\Http\\Controllers\\PDFController;\n use Illuminate\\Support\\Facades\\Route;\n \n Route::get('/', function () {\n     return redirect('/admin');\n });\n \n-Route::get('download', function () {\n-    return 'cek latihan';\n\\ No newline at end of file\n-})->name('download.tes');\n+Route::get('download', [PDFController::class, 'downloadpdf'])->name('download.tes');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716906029714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,5 +6,6 @@\n Route::get('/', function () {\n     return redirect('/admin');\n });\n \n-Route::get('download', [PDFController::class, 'downloadpdf'])->name('download.tes');\n\\ No newline at end of file\n+Route::get('download', [PDFController::class, 'downloadpdf'])->name('download.tes');\n+Route::get('download/{$id}', [PDFController::class, 'downloadpdf'])->name('download.tes');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716906042579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,5 +7,5 @@\n     return redirect('/admin');\n });\n \n Route::get('download', [PDFController::class, 'downloadpdf'])->name('download.tes');\n-Route::get('download/{$id}', [PDFController::class, 'downloadpdf'])->name('download.tes');\n\\ No newline at end of file\n+Route::get('download/{$id}', [PDFController::class, 'invoicepdf'])->name('download.tes');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716906063645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,5 +7,5 @@\n     return redirect('/admin');\n });\n \n Route::get('download', [PDFController::class, 'downloadpdf'])->name('download.tes');\n-Route::get('download/{$id}', [PDFController::class, 'invoicepdf'])->name('download.tes');\n\\ No newline at end of file\n+Route::get('download/{$id}', [PDFController::class, 'invoicepdf'])->name('download.pdf');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716908658401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,5 +7,5 @@\n     return redirect('/admin');\n });\n \n Route::get('download', [PDFController::class, 'downloadpdf'])->name('download.tes');\n-Route::get('download/{$id}', [PDFController::class, 'invoicepdf'])->name('download.pdf');\n\\ No newline at end of file\n+Route::get('download/{id}', [PDFController::class, 'invoicepdf'])->name('download.pdf');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716912460465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,7 +5,10 @@\n \n Route::get('/', function () {\n     return redirect('/admin');\n });\n+Route::get('/cek', function () {\n+    return view('invoicePDF');\n+});\n \n Route::get('download', [PDFController::class, 'downloadpdf'])->name('download.tes');\n Route::get('download/{id}', [PDFController::class, 'invoicepdf'])->name('download.pdf');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716912815953,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,7 @@\n \n Route::get('/', function () {\n     return redirect('/admin');\n });\n-Route::get('/cek', function () {\n-    return view('invoicePDF');\n-});\n \n Route::get('download', [PDFController::class, 'downloadpdf'])->name('download.tes');\n Route::get('download/{id}', [PDFController::class, 'invoicepdf'])->name('download.pdf');\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1716902255879,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Support\\Facades\\Route;\n\nRoute::get('/', function () {\n    return view('welcome');\n});\n\nRoute::get('download', function () {\n    return 'cek latihan';\n});"
+        }
+    ]
+}

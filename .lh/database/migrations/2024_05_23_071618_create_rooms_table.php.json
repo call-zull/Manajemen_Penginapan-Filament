@@ -1,0 +1,50 @@
+{
+    "sourceFile": "database/migrations/2024_05_23_071618_create_rooms_table.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1716450776090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716450849549,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,10 @@\n             $table->id();\n             $table->string('No_Kamar');\n             $table->string('Tipe');\n             $table->integer('Harga');\n-            $table->boolean('Is_People')->default('False');\n-\n+            $table->boolean('Is_People')->default(false);\n+            $table->boolean('Is_Clean')->default(false);\n             $table->timestamps();\n             $table->softDeletes();\n         });\n     }\n"
+                },
+                {
+                    "date": 1716452333046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     {\n         Schema::create('rooms', function (Blueprint $table) {\n             $table->id();\n             $table->string('No_Kamar');\n-            $table->string('Tipe');\n+            $table->foreignId('Tipe')->constrained('categories')->cascadeOnDelete();\n             $table->integer('Harga');\n             $table->boolean('Is_People')->default(false);\n             $table->boolean('Is_Clean')->default(false);\n             $table->timestamps();\n"
+                },
+                {
+                    "date": 1716452351434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     {\n         Schema::create('rooms', function (Blueprint $table) {\n             $table->id();\n             $table->string('No_Kamar');\n-            $table->foreignId('Tipe')->constrained('categories')->cascadeOnDelete();\n+            $table->foreignId('Tipe')->constrained('types')->cascadeOnDelete();\n             $table->integer('Harga');\n             $table->boolean('Is_People')->default(false);\n             $table->boolean('Is_Clean')->default(false);\n             $table->timestamps();\n"
+                },
+                {
+                    "date": 1716456298955,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     {\n         Schema::create('rooms', function (Blueprint $table) {\n             $table->id();\n             $table->string('No_Kamar');\n-            $table->foreignId('Tipe')->constrained('types')->cascadeOnDelete();\n+            $table->foreignId('type_id')->constrained('types')->cascadeOnDelete();\n             $table->integer('Harga');\n             $table->boolean('Is_People')->default(false);\n             $table->boolean('Is_Clean')->default(false);\n             $table->timestamps();\n"
+                },
+                {
+                    "date": 1716456365808,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     {\n         Schema::create('rooms', function (Blueprint $table) {\n             $table->id();\n             $table->string('No_Kamar');\n-            $table->foreignId('type_id')->constrained('types')->cascadeOnDelete();\n+            $table->foreignId('types_id')->constrained('types')->cascadeOnDelete();\n             $table->integer('Harga');\n             $table->boolean('Is_People')->default(false);\n             $table->boolean('Is_Clean')->default(false);\n             $table->timestamps();\n"
+                },
+                {
+                    "date": 1716456506060,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     {\n         Schema::create('rooms', function (Blueprint $table) {\n             $table->id();\n             $table->string('No_Kamar');\n-            $table->foreignId('types_id')->constrained('types')->cascadeOnDelete();\n+            $table->foreignId('type_id')->constrained('types')->cascadeOnDelete();\n             $table->integer('Harga');\n             $table->boolean('Is_People')->default(false);\n             $table->boolean('Is_Clean')->default(false);\n             $table->timestamps();\n"
+                },
+                {
+                    "date": 1716461874552,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     {\n         Schema::create('rooms', function (Blueprint $table) {\n             $table->id();\n             $table->string('No_Kamar');\n-            $table->foreignId('type_id')->constrained('types')->cascadeOnDelete();\n+            $table->foreignId('Type_id')->constrained('types')->cascadeOnDelete();\n             $table->integer('Harga');\n             $table->boolean('Is_People')->default(false);\n             $table->boolean('Is_Clean')->default(false);\n             $table->timestamps();\n"
+                },
+                {
+                    "date": 1716463344913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     {\n         Schema::create('rooms', function (Blueprint $table) {\n             $table->id();\n             $table->string('No_Kamar');\n-            $table->foreignId('Type_id')->constrained('types')->cascadeOnDelete();\n+            $table->foreignId('type_id')->constrained('types')->cascadeOnDelete();\n             $table->integer('Harga');\n             $table->boolean('Is_People')->default(false);\n             $table->boolean('Is_Clean')->default(false);\n             $table->timestamps();\n"
+                }
+            ],
+            "date": 1716450776090,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration\n{\n    /**\n     * Run the migrations.\n     */\n    public function up(): void\n    {\n        Schema::create('rooms', function (Blueprint $table) {\n            $table->id();\n            $table->string('No_Kamar');\n            $table->string('Tipe');\n            $table->integer('Harga');\n            $table->boolean('Is_People')->default('False');\n\n            $table->timestamps();\n            $table->softDeletes();\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     */\n    public function down(): void\n    {\n        Schema::dropIfExists('rooms');\n    }\n};"
+        }
+    ]
+}

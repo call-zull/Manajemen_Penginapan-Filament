@@ -1,0 +1,18 @@
+{
+    "sourceFile": "resources/css/app.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1716912545309,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1716912545309,
+            "name": "Commit-0",
+            "content": "@tailwind base;\r\n@tailwind components;\r\n@tailwind utilities;"
+        }
+    ]
+}

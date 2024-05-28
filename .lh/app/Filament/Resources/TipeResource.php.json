@@ -1,0 +1,22 @@
+{
+    "sourceFile": "app/Filament/Resources/TipeResource.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1716447455756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716448312149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,9 @@\n     {\n         return $table\n             ->columns([\n                 Tables\\Columns\\TextColumn::make('name')\n+                    ->label('Nama Tipe')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('harga')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('created_at')\n"
+                }
+            ],
+            "date": 1716447455756,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources;\n\nuse App\\Filament\\Resources\\TipeResource\\Pages;\nuse App\\Filament\\Resources\\TipeResource\\RelationManagers;\nuse App\\Models\\Tipe;\nuse Filament\\Forms;\nuse Filament\\Forms\\Form;\nuse Filament\\Resources\\Resource;\nuse Filament\\Tables;\nuse Filament\\Tables\\Table;\nuse Illuminate\\Database\\Eloquent\\Builder;\nuse Illuminate\\Database\\Eloquent\\SoftDeletingScope;\n\nclass TipeResource extends Resource\n{\n    protected static ?string $model = Tipe::class;\n\n    protected static ?string $navigationIcon = 'heroicon-s-building-office-2';\n\n    public static function form(Form $form): Form\n    {\n        return $form\n            ->schema([\n                Forms\\Components\\TextInput::make('name')\n                    ->required()\n                    ->maxLength(255),\n                Forms\\Components\\TextInput::make('harga')\n                    ->required()\n                    ->maxLength(255),\n            ]);\n    }\n\n    public static function table(Table $table): Table\n    {\n        return $table\n            ->columns([\n                Tables\\Columns\\TextColumn::make('name')\n                    ->searchable(),\n                Tables\\Columns\\TextColumn::make('harga')\n                    ->searchable(),\n                Tables\\Columns\\TextColumn::make('created_at')\n                    ->dateTime()\n                    ->sortable()\n                    ->toggleable(isToggledHiddenByDefault: true),\n                Tables\\Columns\\TextColumn::make('updated_at')\n                    ->dateTime()\n                    ->sortable()\n                    ->toggleable(isToggledHiddenByDefault: true),\n                Tables\\Columns\\TextColumn::make('deleted_at')\n                    ->dateTime()\n                    ->sortable()\n                    ->toggleable(isToggledHiddenByDefault: true),\n            ])\n            ->filters([\n                //\n            ])\n            ->actions([\n                Tables\\Actions\\EditAction::make(),\n            ])\n            ->bulkActions([\n                Tables\\Actions\\BulkActionGroup::make([\n                    Tables\\Actions\\DeleteBulkAction::make(),\n                ]),\n            ]);\n    }\n\n    public static function getRelations(): array\n    {\n        return [\n            //\n        ];\n    }\n\n    public static function getPages(): array\n    {\n        return [\n            'index' => Pages\\ListTipes::route('/'),\n            'create' => Pages\\CreateTipe::route('/create'),\n            'edit' => Pages\\EditTipe::route('/{record}/edit'),\n        ];\n    }\n}"
+        }
+    ]
+}

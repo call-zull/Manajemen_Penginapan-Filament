@@ -1,0 +1,38 @@
+{
+    "sourceFile": "app/Models/Invoice.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1716889239561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716889296924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,7 +9,11 @@\n {\n     use HasFactory;\n     protected $fillable = [\n         'Name',\n+        'check_in',\n+        'check_out',\n+        'room_id',\n+        'name_customer'\n     ];\n \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716889745178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n <?php\n \n namespace App\\Models;\n \n+use App\\Models\\Room;\n+use Illuminate\\Database\\Eloquent\\Model;\n use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n-use Illuminate\\Database\\Eloquent\\Model;\n \n class Invoice extends Model\n {\n     use HasFactory;\n@@ -15,5 +16,9 @@\n         'room_id',\n         'name_customer'\n     ];\n \n+    public function room(): BelongsTo\n+    {\n+        return $this->belongsTo(Room::class);\n+    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716890076187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\Models;\n \n use App\\Models\\Room;\n use Illuminate\\Database\\Eloquent\\Model;\n+use Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;\n use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n \n class Invoice extends Model\n {\n"
+                },
+                {
+                    "date": 1716891788036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n \n class Invoice extends Model\n {\n     use HasFactory;\n+\n     protected $fillable = [\n         'Name',\n         'check_in',\n         'check_out',\n@@ -21,5 +22,15 @@\n     public function room(): BelongsTo\n     {\n         return $this->belongsTo(Room::class);\n     }\n+\n+    // Metode untuk menghitung total harga\n+    public function getTotalPriceAttribute()\n+    {\n+        $checkIn = \\Carbon\\Carbon::parse($this->check_in);\n+        $checkOut = \\Carbon\\Carbon::parse($this->check_out);\n+        $days = $checkIn->diffInDays($checkOut);\n+\n+        return $days * $this->room->Harga;\n+    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716910954968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,5 +32,17 @@\n         $days = $checkIn->diffInDays($checkOut);\n \n         return $days * $this->room->Harga;\n     }\n+\n+    protected static function boot()\n+    {\n+        parent::boot();\n+\n+        static::creating(function ($invoice) {\n+            $lastInvoice = self::latest()->first();\n+            $lastNumber = ($lastInvoice) ? intval(substr($lastInvoice->invoice_number, 4)) : 0;\n+            $newNumber = $lastNumber + 1;\n+            $invoice->invoice_number = 'INV-' . $newNumber;\n+        });\n+    }\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1716889239561,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\n\nclass Invoice extends Model\n{\n    use HasFactory;\n    protected $fillable = [\n        'Name',\n    ];\n\n}"
+        }
+    ]
+}

@@ -1,0 +1,194 @@
+{
+    "sourceFile": "app/Http/Controllers/PDFController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 44,
+            "patches": [
+                {
+                    "date": 1716902606762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716902675874,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\Http\\Controllers;\n \n use App\\Models\\Invoice;\n use Illuminate\\Http\\Request;\n+use PDF;\n \n class PDFController extends Controller\n {\n     public function downloadpdf(){\n@@ -13,6 +14,8 @@\n         $data = [\n             'date' => date('m/d/y'),\n             'invoice' => $invoice\n         ];\n+\n+        $pdf = PDF::loadView('invoicePDF');\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716902694187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,7 +15,7 @@\n             'date' => date('m/d/y'),\n             'invoice' => $invoice\n         ];\n \n-        $pdf = PDF::loadView('invoicePDF');\n+        $pdf = PDF::loadView('invoicePDF', $data);\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716902740392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,6 +16,8 @@\n             'invoice' => $invoice\n         ];\n \n         $pdf = PDF::loadView('invoicePDF', $data);\n+\n+        return $pdf->download('Invoice-Penginapan.pdf');\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716903267055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n class PDFController extends Controller\n {\n     public function downloadpdf(){\n         $invoice = Invoice::all();\n+        dd($invoice);\n \n         $data = [\n             'date' => date('m/d/y'),\n             'invoice' => $invoice\n"
+                },
+                {
+                    "date": 1716903318384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n class PDFController extends Controller\n {\n     public function downloadpdf(){\n         $invoice = Invoice::all();\n-        dd($invoice);\n+        // dd($invoice);\n \n         $data = [\n             'date' => date('m/d/y'),\n             'invoice' => $invoice\n"
+                },
+                {
+                    "date": 1716903393093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,14 +8,14 @@\n \n class PDFController extends Controller\n {\n     public function downloadpdf(){\n-        $invoice = Invoice::all();\n+        $invoices = Invoice::all();\n         // dd($invoice);\n \n         $data = [\n             'date' => date('m/d/y'),\n-            'invoice' => $invoice\n+            'invoice' => $invoices\n         ];\n \n         $pdf = PDF::loadView('invoicePDF', $data);\n \n"
+                },
+                {
+                    "date": 1716903765597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n <?php\n \n namespace App\\Http\\Controllers;\n \n+use PDF;\n use App\\Models\\Invoice;\n use Illuminate\\Http\\Request;\n-use PDF;\n+use App\\Http\\Controllers\\Controller;\n \n class PDFController extends Controller\n {\n     public function downloadpdf(){\n"
+                },
+                {
+                    "date": 1716903789165,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n namespace App\\Http\\Controllers;\n \n use PDF;\n use App\\Models\\Invoice;\n-use Illuminate\\Http\\Request;\n use App\\Http\\Controllers\\Controller;\n \n class PDFController extends Controller\n {\n"
+                },
+                {
+                    "date": 1716903848964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n <?php\n \n namespace App\\Http\\Controllers;\n \n-use PDF;\n use App\\Models\\Invoice;\n use App\\Http\\Controllers\\Controller;\n \n class PDFController extends Controller\n"
+                },
+                {
+                    "date": 1716903860850,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \n namespace App\\Http\\Controllers;\n \n use App\\Models\\Invoice;\n+use Barryvdh\\DomPDF\\PDF;\n use App\\Http\\Controllers\\Controller;\n \n class PDFController extends Controller\n {\n"
+                },
+                {
+                    "date": 1716903963173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,15 +10,18 @@\n {\n     public function downloadpdf(){\n         $invoices = Invoice::all();\n         // dd($invoice);\n-\n+    \n         $data = [\n             'date' => date('m/d/y'),\n-            'invoice' => $invoices\n+            'invoices' => $invoices // Pastikan variabel disebut $invoices, bukan $invoice\n         ];\n-\n-        $pdf = PDF::loadView('invoicePDF', $data);\n-\n+    \n+        $pdf = new \\Barryvdh\\DomPDF\\PDF(); // Membuat instance objek PDF\n+    \n+        $pdf->loadView('invoicePDF', $data); // Memanggil metode loadView() pada objek PDF\n+    \n         return $pdf->download('Invoice-Penginapan.pdf');\n     }\n+    \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716904056943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,19 +9,23 @@\n class PDFController extends Controller\n {\n     public function downloadpdf(){\n         $invoices = Invoice::all();\n-        // dd($invoice);\n     \n         $data = [\n             'date' => date('m/d/y'),\n-            'invoices' => $invoices // Pastikan variabel disebut $invoices, bukan $invoice\n+            'invoices' => $invoices\n         ];\n-    \n-        $pdf = new \\Barryvdh\\DomPDF\\PDF(); // Membuat instance objek PDF\n-    \n-        $pdf->loadView('invoicePDF', $data); // Memanggil metode loadView() pada objek PDF\n-    \n+\n+        // Membuat instance objek PDF dengan menyediakan argumen yang diperlukan\n+        $pdf = new PDF(\n+            ['mode' => 'utf-8', 'format' => 'A4', 'orientation' => 'portrait'],\n+            true,\n+            null,\n+            '',\n+        );\n+\n+        $pdf->loadView('invoicePDF', $data);\n+\n         return $pdf->download('Invoice-Penginapan.pdf');\n     }\n-    \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716904120731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,23 +9,16 @@\n class PDFController extends Controller\n {\n     public function downloadpdf(){\n         $invoices = Invoice::all();\n-    \n+        // dd($invoice);\n+\n         $data = [\n             'date' => date('m/d/y'),\n-            'invoices' => $invoices\n+            'invoice' => $invoices\n         ];\n \n-        // Membuat instance objek PDF dengan menyediakan argumen yang diperlukan\n-        $pdf = new PDF(\n-            ['mode' => 'utf-8', 'format' => 'A4', 'orientation' => 'portrait'],\n-            true,\n-            null,\n-            '',\n-        );\n+        $pdf = PDF::loadView('invoicePDF', $data);\n \n-        $pdf->loadView('invoicePDF', $data);\n-\n         return $pdf->download('Invoice-Penginapan.pdf');\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716904268241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n namespace App\\Http\\Controllers;\n \n use App\\Models\\Invoice;\n-use Barryvdh\\DomPDF\\PDF;\n+use Barryvdh\\DomPDF\\Facade as PDF;\n use App\\Http\\Controllers\\Controller;\n \n class PDFController extends Controller\n {\n"
+                },
+                {
+                    "date": 1716904422762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n namespace App\\Http\\Controllers;\n \n use App\\Models\\Invoice;\n-use Barryvdh\\DomPDF\\Facade as PDF;\n+use Barryvdh\\DomPDF\\PDF;\n use App\\Http\\Controllers\\Controller;\n \n class PDFController extends Controller\n {\n"
+                },
+                {
+                    "date": 1716904741267,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n namespace App\\Http\\Controllers;\n \n use App\\Models\\Invoice;\n-use Barryvdh\\DomPDF\\PDF;\n+use PDF;\n use App\\Http\\Controllers\\Controller;\n \n class PDFController extends Controller\n {\n@@ -16,9 +16,10 @@\n             'date' => date('m/d/y'),\n             'invoice' => $invoices\n         ];\n \n-        $pdf = PDF::loadView('invoicePDF', $data);\n+        // $pdf = PDF::loadView('invoicePDF', $data);\n+        $pdf = PDF::loadFile('invoicePDF', $data);\n \n         return $pdf->download('Invoice-Penginapan.pdf');\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716904894467,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <?php\n \n-namespace App\\Http\\Controllers;\n+nnamespace App\\Http\\Controllers;\n \n use App\\Models\\Invoice;\n use PDF;\n use App\\Http\\Controllers\\Controller;\n"
+                },
+                {
+                    "date": 1716904903176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <?php\n \n-nnamespace App\\Http\\Controllers;\n+namespace App\\Http\\Controllers;\n \n use App\\Models\\Invoice;\n use PDF;\n use App\\Http\\Controllers\\Controller;\n"
+                },
+                {
+                    "date": 1716905054412,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,8 @@\n \n namespace App\\Http\\Controllers;\n \n use App\\Models\\Invoice;\n-use PDF;\n use App\\Http\\Controllers\\Controller;\n \n class PDFController extends Controller\n {\n"
+                },
+                {
+                    "date": 1716905080203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,10 @@\n \n namespace App\\Http\\Controllers;\n \n use App\\Models\\Invoice;\n+use Barryvdh\\DomPDF\\PDF;\n+use PDF:\n use App\\Http\\Controllers\\Controller;\n \n class PDFController extends Controller\n {\n@@ -16,9 +18,9 @@\n             'invoice' => $invoices\n         ];\n \n         // $pdf = PDF::loadView('invoicePDF', $data);\n-        $pdf = PDF::loadFile('invoicePDF', $data);\n+        $pdf = PDF::loadV('invoicePDF', $data);\n \n         return $pdf->download('Invoice-Penginapan.pdf');\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716905090819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n namespace App\\Http\\Controllers;\n \n use App\\Models\\Invoice;\n use Barryvdh\\DomPDF\\PDF;\n-use PDF:\n use App\\Http\\Controllers\\Controller;\n \n class PDFController extends Controller\n {\n"
+                },
+                {
+                    "date": 1716905097001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n             'invoice' => $invoices\n         ];\n \n         // $pdf = PDF::loadView('invoicePDF', $data);\n-        $pdf = PDF::loadV('invoicePDF', $data);\n+        $pdf = PDF::loadView('invoicePDF', $data);\n \n         return $pdf->download('Invoice-Penginapan.pdf');\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716905153298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n namespace App\\Http\\Controllers;\n \n use App\\Models\\Invoice;\n-use Barryvdh\\DomPDF\\PDF;\n+use Barryvdh\\DomPDF\\Facade\\Pdf;\n use App\\Http\\Controllers\\Controller;\n \n class PDFController extends Controller\n {\n"
+                },
+                {
+                    "date": 1716905165943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n             'invoice' => $invoices\n         ];\n \n         // $pdf = PDF::loadView('invoicePDF', $data);\n-        $pdf = PDF::loadView('invoicePDF', $data);\n+        $pdf = Pdf::loadView('invoicePDF', $data);\n \n         return $pdf->download('Invoice-Penginapan.pdf');\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716905287526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,16 +9,14 @@\n class PDFController extends Controller\n {\n     public function downloadpdf(){\n         $invoices = Invoice::all();\n-        // dd($invoice);\n \n         $data = [\n             'date' => date('m/d/y'),\n-            'invoice' => $invoices\n+            'invoices' => $invoices // Mengubah $invoice menjadi $invoices\n         ];\n \n-        // $pdf = PDF::loadView('invoicePDF', $data);\n         $pdf = Pdf::loadView('invoicePDF', $data);\n \n         return $pdf->download('Invoice-Penginapan.pdf');\n     }\n"
+                },
+                {
+                    "date": 1716905374044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n         $invoices = Invoice::all();\n \n         $data = [\n             'date' => date('m/d/y'),\n-            'invoices' => $invoices // Mengubah $invoice menjadi $invoices\n+            'invoices' => $invoices\n         ];\n \n         $pdf = Pdf::loadView('invoicePDF', $data);\n \n"
+                },
+                {
+                    "date": 1716905456756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,12 @@\n             'date' => date('m/d/y'),\n             'invoices' => $invoices\n         ];\n \n+        $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n+        $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n+\n         $pdf = Pdf::loadView('invoicePDF', $data);\n \n-        return $pdf->download('Invoice-Penginapan.pdf');\n+        return $pdf->download($filename); // Menggunakan nama file yang baru dibuat\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716906216718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,5 +22,10 @@\n         $pdf = Pdf::loadView('invoicePDF', $data);\n \n         return $pdf->download($filename); // Menggunakan nama file yang baru dibuat\n     }\n+\n+    public function invoicepdf($id){\n+        $invoice = Invoice::find($id);\n+        return $invoice;\n+    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716908305438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,7 +25,17 @@\n     }\n \n     public function invoicepdf($id){\n         $invoice = Invoice::find($id);\n-        return $invoice;\n+        $data = [\n+            'date' => date('m/d/y'),\n+            'invoices' => $invoices\n+        ];\n+\n+        $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n+        $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n+\n+        $pdf = Pdf::loadView('invoicePDF', $data);\n+\n+        return $pdf->download($filename); \n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716908312320,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n     public function invoicepdf($id){\n         $invoice = Invoice::find($id);\n         $data = [\n             'date' => date('m/d/y'),\n-            'invoices' => $invoices\n+            'invoices' => $invoice\n         ];\n \n         $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n         $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n"
+                },
+                {
+                    "date": 1716908856936,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n     }\n \n     public function invoicepdf($id){\n         $invoice = Invoice::find($id);\n+        dd($invoice);\n         $data = [\n             'date' => date('m/d/y'),\n             'invoices' => $invoice\n         ];\n"
+                },
+                {
+                    "date": 1716909066889,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     }\n \n     public function invoicepdf($id){\n         $invoice = Invoice::find($id);\n-        dd($invoice);\n+        // dd($invoice);\n         $data = [\n             'date' => date('m/d/y'),\n             'invoices' => $invoice\n         ];\n"
+                },
+                {
+                    "date": 1716909311969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,12 +25,16 @@\n     }\n \n     public function invoicepdf($id){\n         $invoice = Invoice::find($id);\n-        // dd($invoice);\n+\n+        if (!$invoice) {\n+            abort(404, 'Invoice not found');\n+        }\n+\n         $data = [\n             'date' => date('m/d/y'),\n-            'invoices' => $invoice\n+            'invoice' => $invoice  // Change from 'invoices' to 'invoice'\n         ];\n \n         $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n         $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n"
+                },
+                {
+                    "date": 1716909698253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,17 +24,17 @@\n         return $pdf->download($filename); // Menggunakan nama file yang baru dibuat\n     }\n \n     public function invoicepdf($id){\n-        $invoice = Invoice::find($id);\n+        $invoice = Invoice::with('room')->find($id);  // Ensure room relationship is loaded\n \n         if (!$invoice) {\n             abort(404, 'Invoice not found');\n         }\n \n         $data = [\n             'date' => date('m/d/y'),\n-            'invoice' => $invoice  // Change from 'invoices' to 'invoice'\n+            'invoice' => $invoice\n         ];\n \n         $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n         $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n"
+                },
+                {
+                    "date": 1716909825118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,16 +4,18 @@\n \n use App\\Models\\Invoice;\n use Barryvdh\\DomPDF\\Facade\\Pdf;\n use App\\Http\\Controllers\\Controller;\n+use Carbon\\Carbon;\n \n class PDFController extends Controller\n {\n     public function downloadpdf(){\n         $invoices = Invoice::all();\n+        $date = Carbon::now()->format('l, d F Y H:i'); // Format tanggal dan waktu\n \n         $data = [\n-            'date' => date('m/d/y'),\n+            'date' => $date,\n             'invoices' => $invoices\n         ];\n \n         $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n@@ -24,16 +26,18 @@\n         return $pdf->download($filename); // Menggunakan nama file yang baru dibuat\n     }\n \n     public function invoicepdf($id){\n-        $invoice = Invoice::with('room')->find($id);  // Ensure room relationship is loaded\n+        $invoice = Invoice::with('room')->find($id);\n \n         if (!$invoice) {\n             abort(404, 'Invoice not found');\n         }\n \n+        $date = Carbon::now()->format('l, d F Y H:i'); // Format tanggal dan waktu\n+\n         $data = [\n-            'date' => date('m/d/y'),\n+            'date' => $date,\n             'invoice' => $invoice\n         ];\n \n         $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n"
+                },
+                {
+                    "date": 1716910007818,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,19 @@\n use Carbon\\Carbon;\n \n class PDFController extends Controller\n {\n-    public function downloadpdf(){\n+    public function __construct()\n+    {\n+        // Set locale to Indonesian\n+        Carbon::setLocale('id');\n+        setlocale(LC_TIME, 'id_ID');\n+    }\n+\n+    public function downloadpdf()\n+    {\n         $invoices = Invoice::all();\n-        $date = Carbon::now()->format('l, d F Y H:i'); // Format tanggal dan waktu\n+        $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n \n         $data = [\n             'date' => $date,\n             'invoices' => $invoices\n@@ -25,16 +33,17 @@\n \n         return $pdf->download($filename); // Menggunakan nama file yang baru dibuat\n     }\n \n-    public function invoicepdf($id){\n+    public function invoicepdf($id)\n+    {\n         $invoice = Invoice::with('room')->find($id);\n \n         if (!$invoice) {\n             abort(404, 'Invoice not found');\n         }\n \n-        $date = Carbon::now()->format('l, d F Y H:i'); // Format tanggal dan waktu\n+        $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n \n         $data = [\n             'date' => $date,\n             'invoice' => $invoice\n"
+                },
+                {
+                    "date": 1716910247459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,11 +19,13 @@\n     public function downloadpdf()\n     {\n         $invoices = Invoice::all();\n         $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n+        $invoiceNumber = $this->generateRandomInvoiceNumber(); // Generate random invoice number\n \n         $data = [\n             'date' => $date,\n+            'invoiceNumber' => $invoiceNumber,\n             'invoices' => $invoices\n         ];\n \n         $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n@@ -42,11 +44,13 @@\n             abort(404, 'Invoice not found');\n         }\n \n         $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n+        $invoiceNumber = $this->generateRandomInvoiceNumber(); // Generate random invoice number\n \n         $data = [\n             'date' => $date,\n+            'invoiceNumber' => $invoiceNumber,\n             'invoice' => $invoice\n         ];\n \n         $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n@@ -55,5 +59,10 @@\n         $pdf = Pdf::loadView('invoicePDF', $data);\n \n         return $pdf->download($filename); \n     }\n+\n+    private function generateRandomInvoiceNumber()\n+    {\n+        return 'INV-' . strtoupper(uniqid());\n+    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716910993428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,53 +16,45 @@\n         setlocale(LC_TIME, 'id_ID');\n     }\n \n     public function downloadpdf()\n-    {\n-        $invoices = Invoice::all();\n-        $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n-        $invoiceNumber = $this->generateRandomInvoiceNumber(); // Generate random invoice number\n+{\n+    $invoices = Invoice::all();\n+    $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n \n-        $data = [\n-            'date' => $date,\n-            'invoiceNumber' => $invoiceNumber,\n-            'invoices' => $invoices\n-        ];\n+    $data = [\n+        'date' => $date,\n+        'invoices' => $invoices\n+    ];\n \n-        $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n-        $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n+    $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n+    $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n \n-        $pdf = Pdf::loadView('invoicePDF', $data);\n+    $pdf = Pdf::loadView('invoicePDF', $data);\n \n-        return $pdf->download($filename); // Menggunakan nama file yang baru dibuat\n-    }\n+    return $pdf->download($filename); // Menggunakan nama file yang baru dibuat\n+}\n \n-    public function invoicepdf($id)\n-    {\n-        $invoice = Invoice::with('room')->find($id);\n+public function invoicepdf($id)\n+{\n+    $invoice = Invoice::with('room')->find($id);\n \n-        if (!$invoice) {\n-            abort(404, 'Invoice not found');\n-        }\n+    if (!$invoice) {\n+        abort(404, 'Invoice not found');\n+    }\n \n-        $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n-        $invoiceNumber = $this->generateRandomInvoiceNumber(); // Generate random invoice number\n+    $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n \n-        $data = [\n-            'date' => $date,\n-            'invoiceNumber' => $invoiceNumber,\n-            'invoice' => $invoice\n-        ];\n+    $data = [\n+        'date' => $date,\n+        'invoice' => $invoice\n+    ];\n \n-        $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n-        $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n+    $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n+    $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n \n-        $pdf = Pdf::loadView('invoicePDF', $data);\n+    $pdf = Pdf::loadView('invoicePDF', $data);\n \n-        return $pdf->download($filename); \n-    }\n+    return $pdf->download($filename); \n+}\n \n-    private function generateRandomInvoiceNumber()\n-    {\n-        return 'INV-' . strtoupper(uniqid());\n-    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716911259503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,46 +15,32 @@\n         Carbon::setLocale('id');\n         setlocale(LC_TIME, 'id_ID');\n     }\n \n-    public function downloadpdf()\n-{\n-    $invoices = Invoice::all();\n-    $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n \n-    $data = [\n-        'date' => $date,\n-        'invoices' => $invoices\n-    ];\n-\n-    $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n-    $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n-\n-    $pdf = Pdf::loadView('invoicePDF', $data);\n-\n-    return $pdf->download($filename); // Menggunakan nama file yang baru dibuat\n-}\n-\n-public function invoicepdf($id)\n-{\n-    $invoice = Invoice::with('room')->find($id);\n-\n-    if (!$invoice) {\n-        abort(404, 'Invoice not found');\n+    public function invoicepdf($id)\n+    {\n+        $invoice = Invoice::with('room')->find($id);\n+    \n+        if (!$invoice) {\n+            abort(404, 'Invoice tidak ditemukan');\n+        }\n+    \n+        $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n+        $invoiceNumber = $this->generateRandomInvoiceNumber(); // Generate nomor invoice secara acak\n+    \n+        $data = [\n+            'date' => $date,\n+            'invoiceNumber' => $invoiceNumber,\n+            'invoice' => $invoice\n+        ];\n+    \n+        $timestamp = now()->timestamp; // Dapatkan timestamp saat ini\n+        $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Tambahkan timestamp ke nama file\n+    \n+        $pdf = Pdf::loadView('invoicePDF', $data);\n+    \n+        return $pdf->download($filename); \n     }\n+    \n \n-    $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n-\n-    $data = [\n-        'date' => $date,\n-        'invoice' => $invoice\n-    ];\n-\n-    $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n-    $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n-\n-    $pdf = Pdf::loadView('invoicePDF', $data);\n-\n-    return $pdf->download($filename); \n-}\n-\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716911270693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,31 +16,28 @@\n         setlocale(LC_TIME, 'id_ID');\n     }\n \n \n-    public function invoicepdf($id)\n-    {\n-        $invoice = Invoice::with('room')->find($id);\n-    \n-        if (!$invoice) {\n-            abort(404, 'Invoice tidak ditemukan');\n-        }\n-    \n-        $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n-        $invoiceNumber = $this->generateRandomInvoiceNumber(); // Generate nomor invoice secara acak\n-    \n-        $data = [\n-            'date' => $date,\n-            'invoiceNumber' => $invoiceNumber,\n-            'invoice' => $invoice\n-        ];\n-    \n-        $timestamp = now()->timestamp; // Dapatkan timestamp saat ini\n-        $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Tambahkan timestamp ke nama file\n-    \n-        $pdf = Pdf::loadView('invoicePDF', $data);\n-    \n-        return $pdf->download($filename); \n+public function invoicepdf($id)\n+{\n+    $invoice = Invoice::with('room')->find($id);\n+\n+    if (!$invoice) {\n+        abort(404, 'Invoice not found');\n     }\n-    \n \n+    $date = Carbon::now()->translatedFormat('l, d F Y H:i'); // Format tanggal dan waktu dalam bahasa Indonesia\n+\n+    $data = [\n+        'date' => $date,\n+        'invoice' => $invoice\n+    ];\n+\n+    $timestamp = now()->timestamp; // Mendapatkan timestamp saat ini\n+    $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n+\n+    $pdf = Pdf::loadView('invoicePDF', $data);\n+\n+    return $pdf->download($filename); \n+}\n+\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716912765843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,12 @@\n \n \n public function invoicepdf($id)\n {\n+\n     $invoice = Invoice::with('room')->find($id);\n \n+    die;\n     if (!$invoice) {\n         abort(404, 'Invoice not found');\n     }\n \n"
+                },
+                {
+                    "date": 1716912786040,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,12 +18,11 @@\n \n \n public function invoicepdf($id)\n {\n-\n+    \n     $invoice = Invoice::with('room')->find($id);\n \n-    die;\n     if (!$invoice) {\n         abort(404, 'Invoice not found');\n     }\n \n@@ -38,8 +37,9 @@\n     $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n \n     $pdf = Pdf::loadView('invoicePDF', $data);\n \n+    die;\n     return $pdf->download($filename); \n }\n \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716912829658,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,10 @@\n     $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n \n     $pdf = Pdf::loadView('invoicePDF', $data);\n \n+    return view('invoicePDF');\n     die;\n-    return $pdf->download($filename); \n+    // return $pdf->download($filename); \n }\n \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716912870718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,10 +37,10 @@\n     $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n \n     $pdf = Pdf::loadView('invoicePDF', $data);\n \n-    return view('invoicePDF');\n-    die;\n-    // return $pdf->download($filename); \n+    // return view('invoicePDF');\n+    // die;\n+    return $pdf->download($filename); \n }\n \n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1716902606762,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Http\\Controllers;\n\nuse App\\Models\\Invoice;\nuse Illuminate\\Http\\Request;\n\nclass PDFController extends Controller\n{\n    public function downloadpdf(){\n        $invoice = Invoice::all();\n\n        $data = [\n            'date' => date('m/d/y'),\n            'invoice' => $invoice\n        ];\n    }\n}"
+        }
+    ]
+}
