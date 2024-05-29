@@ -13,7 +13,7 @@
 
 1. Clone repository terlebih dahulu.
 2. Jalankan dengan terminal `composer install`
-3. Konfigurasi file .env
+3. Konfigurasi file .env baik untuk database nya dll
 4. jalankan `php artisan key:generate`
 5. Jalankan dengan terminal menggunakan perintah `php artisan serve`.
 6. Jalankan `npm run dev`
