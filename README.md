@@ -12,9 +12,12 @@
 ## Cara Penggunaan
 
 1. Clone repository terlebih dahulu.
-2. Jalankan dengan terminal menggunakan perintah `php artisan serve`.
-3. Jalankan `npm run dev`
-4. Konfigurasikan database.
-5. Jalankan migrasi menggunakan perintah `php artisan migrate`.
-6. Buat pengguna untuk akses Filament menggunakan perintah `php artisan make:filament-user`. Masukkan username, email, dan password untuk login ke Dashboard Filament.
-7. Let's Try!
+2. Jalankan dengan terminal `composer install`
+3. Konfigurasi file .env
+4. jalankan `php artisan key:generate`
+5. Jalankan dengan terminal menggunakan perintah `php artisan serve`.
+6. Jalankan `npm run dev`
+7. Konfigurasikan database.
+8. Jalankan migrasi menggunakan perintah `php artisan migrate` atau `php artisan migrate:fresh`.
+9. Buat pengguna untuk akses Filament menggunakan perintah `php artisan make:filament-user`. Masukkan username, email, dan password untuk login ke Dashboard Filament.
+10. Let's Try!
