@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/Providers/Filament/AdminPanelProvider.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1716956138257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1716956138257,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Providers\\Filament;\n\nuse Filament\\Http\\Middleware\\Authenticate;\nuse Filament\\Http\\Middleware\\DisableBladeIconComponents;\nuse Filament\\Http\\Middleware\\DispatchServingFilamentEvent;\nuse Filament\\Pages;\nuse Filament\\Panel;\nuse Filament\\PanelProvider;\nuse Filament\\Support\\Colors\\Color;\nuse Filament\\Widgets;\nuse Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse;\nuse Illuminate\\Cookie\\Middleware\\EncryptCookies;\nuse Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken;\nuse Illuminate\\Routing\\Middleware\\SubstituteBindings;\nuse Illuminate\\Session\\Middleware\\AuthenticateSession;\nuse Illuminate\\Session\\Middleware\\StartSession;\nuse Illuminate\\View\\Middleware\\ShareErrorsFromSession;\n\nclass AdminPanelProvider extends PanelProvider\n{\n    public function panel(Panel $panel): Panel\n    {\n        return $panel\n            ->default()\n            ->id('admin')\n            ->path('admin')\n            ->login()\n            ->colors([\n                'primary' => Color::Amber,\n            ])\n            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\\\Filament\\\\Resources')\n            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\\\Filament\\\\Pages')\n            ->pages([\n                Pages\\Dashboard::class,\n            ])\n            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\\\Filament\\\\Widgets')\n            ->widgets([\n                Widgets\\AccountWidget::class,\n            ])\n            ->middleware([\n                EncryptCookies::class,\n                AddQueuedCookiesToResponse::class,\n                StartSession::class,\n                AuthenticateSession::class,\n                ShareErrorsFromSession::class,\n                VerifyCsrfToken::class,\n                SubstituteBindings::class,\n                DisableBladeIconComponents::class,\n                DispatchServingFilamentEvent::class,\n            ])\n            ->authMiddleware([\n                Authenticate::class,\n            ]);\n    }\n}"
+        }
+    ]
+}

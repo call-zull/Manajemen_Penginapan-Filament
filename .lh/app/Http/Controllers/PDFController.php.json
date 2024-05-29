@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 44,
+            "activePatchIndex": 45,
             "patches": [
                 {
                     "date": 1716902606762,
@@ -184,6 +184,10 @@
                 {
                     "date": 1716912870718,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,10 +37,10 @@\n     $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n \n     $pdf = Pdf::loadView('invoicePDF', $data);\n \n-    return view('invoicePDF');\n-    die;\n-    // return $pdf->download($filename); \n+    // return view('invoicePDF');\n+    // die;\n+    return $pdf->download($filename); \n }\n \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716946008455,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,10 +37,8 @@\n     $filename = 'Invoice-Penginapan-' . $timestamp . '.pdf'; // Menambahkan timestamp ke nama file\n \n     $pdf = Pdf::loadView('invoicePDF', $data);\n \n-    // return view('invoicePDF');\n-    // die;\n     return $pdf->download($filename); \n }\n \n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1716902606762,

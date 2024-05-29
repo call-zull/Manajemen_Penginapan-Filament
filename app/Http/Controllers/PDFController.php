@@ -38,8 +38,6 @@ public function invoicepdf($id)
 
     $pdf = Pdf::loadView('invoicePDF', $data);
 
-    // return view('invoicePDF');
-    // die;
     return $pdf->download($filename); 
 }
 
