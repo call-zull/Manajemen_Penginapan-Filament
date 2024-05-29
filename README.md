@@ -13,7 +13,7 @@
 
 1. Clone repository terlebih dahulu.
 2. Jalankan dengan terminal menggunakan perintah `php artisan serve`.
-3. Jalankan "npm run dev"
+3. Jalankan `npm run dev`
 4. Konfigurasikan database.
 5. Jalankan migrasi menggunakan perintah `php artisan migrate`.
 6. Buat pengguna untuk akses Filament menggunakan perintah `php artisan make:filament-user`. Masukkan username, email, dan password untuk login ke Dashboard Filament.
