@@ -30,16 +30,19 @@ class RoomResource extends Resource
                     ->relationship('type', 'Name')
                     ->label('Tipe Kamar')
                     ->required(),
-                Forms\Components\TextInput::make('Harga')
-                    ->required()
-                    ->label('Harga Kamar')
-                    ->numeric(),
-                Forms\Components\Toggle::make('Is_People')
-                    ->label('Diisi')
-                    ->required(),
-                Forms\Components\Toggle::make('Is_Clean')
-                    ->label('Dibersihkan')
-                    ->required(),
+                Forms\Components\Grid::make(3)
+                    ->schema([
+                        Forms\Components\TextInput::make('Harga')
+                            ->required()
+                            ->label('Harga Kamar')
+                            ->numeric(),
+                        Forms\Components\Toggle::make('Is_People')
+                            ->label('Diisi')
+                            ->required(),
+                        Forms\Components\Toggle::make('Is_Clean')
+                            ->label('Dibersihkan')
+                            ->required(),
+                    ]),
             ]);
     }
 

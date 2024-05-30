@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/Filament/Resources/YesResource/Widgets/StatsAdminOverview.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1717043832078,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1717043832078,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources\\YesResource\\Widgets;\n\nuse Filament\\Widgets\\StatsOverviewWidget as BaseWidget;\nuse Filament\\Widgets\\StatsOverviewWidget\\Stat;\n\nclass StatsAdminOverview extends BaseWidget\n{\n    protected function getStats(): array\n    {\n        return [\n            Stat::make('Unique views', '192.1k'),\n            Stat::make('Bounce rate', '21%'),\n            Stat::make('Average time on page', '3:12'),\n        ];\n    }\n}"
+        }
+    ]
+}

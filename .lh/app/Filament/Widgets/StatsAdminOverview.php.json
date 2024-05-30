@@ -1,0 +1,30 @@
+{
+    "sourceFile": "app/Filament/Widgets/StatsAdminOverview.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1717044003489,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1717044213660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,16 @@\n {\n     protected function getStats(): array\n     {\n         return [\n-            Stat::make('Unique views', '192.1k'),\n-            Stat::make('Bounce rate', '21%'),\n-            Stat::make('Average time on page', '3:12'),\n+            Stat::make('Unique views', '192.1k')\n+            ->description('32k increase')\n+            ->descriptionIcon('heroicon-m-arrow-trending-up'),\n+        Stat::make('Bounce rate', '21%')\n+            ->description('7% decrease')\n+            ->descriptionIcon('heroicon-m-arrow-trending-down'),\n+        Stat::make('Average time on page', '3:12')\n+            ->description('3% increase')\n+            ->descriptionIcon('heroicon-m-arrow-trending-up'),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1717044249196,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,15 +10,18 @@\n     protected function getStats(): array\n     {\n         return [\n             Stat::make('Unique views', '192.1k')\n-                ->description('32k increase')\n-                ->descriptionIcon('heroicon-m-arrow-trending-up'),\n-            Stat::make('Bounce rate', '21%')\n-                ->description('7% decrease')\n-                ->descriptionIcon('heroicon-m-arrow-trending-down'),\n-            Stat::make('Average time on page', '3:12')\n-                ->description('3% increase')\n-                ->descriptionIcon('heroicon-m-arrow-trending-up'),\n+            ->description('32k increase')\n+            ->descriptionIcon('heroicon-m-arrow-trending-up')\n+            ->color('success'),\n+        Stat::make('Bounce rate', '21%')\n+            ->description('7% increase')\n+            ->descriptionIcon('heroicon-m-arrow-trending-down')\n+            ->color('danger'),\n+        Stat::make('Average time on page', '3:12')\n+            ->description('3% increase')\n+            ->descriptionIcon('heroicon-m-arrow-trending-up')\n+            ->color('success'),\n         ];\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1717044478275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n {\n     protected function getStats(): array\n     {\n         return [\n-            Stat::make('Unique views', '192.1k')\n+            Stat::make('Rooms', Room::query()->count())\n                 ->description('32k increase')\n                 ->descriptionIcon('heroicon-m-arrow-trending-up')\n                 ->color('success'),\n             Stat::make('Bounce rate', '21%')\n"
+                }
+            ],
+            "date": 1717044003489,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Widgets;\n\nuse Filament\\Widgets\\StatsOverviewWidget as BaseWidget;\nuse Filament\\Widgets\\StatsOverviewWidget\\Stat;\n\nclass StatsAdminOverview extends BaseWidget\n{\n    protected function getStats(): array\n    {\n        return [\n            Stat::make('Unique views', '192.1k'),\n            Stat::make('Bounce rate', '21%'),\n            Stat::make('Average time on page', '3:12'),\n        ];\n    }\n}"
+        }
+    ]
+}
