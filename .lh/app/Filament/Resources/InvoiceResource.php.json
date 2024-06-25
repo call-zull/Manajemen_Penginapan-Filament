@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 46,
+            "activePatchIndex": 49,
             "patches": [
                 {
                     "date": 1716890154794,
@@ -192,6 +192,18 @@
                 {
                     "date": 1716913671332,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n                     ->label('No')\n                     ->getStateUsing(function ($rowLoop, $record) {\n                         return $rowLoop->iteration;\n                     }),\n-                Tables\\Columns\\TextColumn::make('room.invoice_number')\n+                Tables\\Columns\\TextColumn::make('invoice_number')\n                     ->label('No Invoice')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('name_customer')\n                     ->label('Nama Pelanggan')\n"
+                },
+                {
+                    "date": 1718432898704,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,10 @@\n     protected static ?string $model = Invoice::class;\n \n     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';\n \n+    protected static ?string $navigationLabel = 'Kwitansi';\n+\n     public static function form(Form $form): Form\n     {\n         return $form\n             ->schema([\n"
+                },
+                {
+                    "date": 1718432950786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     protected static ?string $model = Invoice::class;\n \n     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';\n \n-    // protected static ?string $navigationLabel = 'Kwitansi';\n+    protected static ?string $navigationLabel = 'Kwitansi';\n \n     public static function form(Form $form): Form\n     {\n         return $form\n"
+                },
+                {
+                    "date": 1718433039660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     protected static ?string $model = Invoice::class;\n \n     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';\n \n-    protected static ?string $navigationLabel = 'Kwitansi';\n+    protected static ?string $navigationLabel = 'Faktur';\n \n     public static function form(Form $form): Form\n     {\n         return $form\n"
                 }
             ],
             "date": 1716890154794,

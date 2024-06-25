@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1716902255879,
@@ -44,6 +44,10 @@
                 {
                     "date": 1716912815953,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,7 @@\n \n Route::get('/', function () {\n     return redirect('/admin');\n });\n-Route::get('/cek', function () {\n-    return view('invoicePDF');\n-});\n \n Route::get('download', [PDFController::class, 'downloadpdf'])->name('download.tes');\n Route::get('download/{id}', [PDFController::class, 'invoicepdf'])->name('download.pdf');\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1718438814881,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n use App\\Http\\Controllers\\PDFController;\n use Illuminate\\Support\\Facades\\Route;\n \n-Route::get('/', function () {\n+Route::get('/', function () { \n     return redirect('/admin');\n });\n \n Route::get('download', [PDFController::class, 'downloadpdf'])->name('download.tes');\n"
                 }
             ],
             "date": 1716902255879,

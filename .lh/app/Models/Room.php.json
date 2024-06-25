@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 11,
             "patches": [
                 {
                     "date": 1716451824113,
@@ -40,6 +40,18 @@
                 {
                     "date": 1716463350553,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     use HasFactory;\n \n     protected $fillable = [\n         'No_Kamar',\n-        'Type_id',\n+        'type_id',\n         'Harga',\n         'Is_People',\n         'Is_Clean',\n     ];\n"
+                },
+                {
+                    "date": 1718433409660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,10 @@\n class Room extends Model\n {\n     use HasFactory;\n \n+    protected $table = 'Kamar';\n+\n     protected $fillable = [\n         'No_Kamar',\n         'type_id',\n         'Harga',\n"
+                },
+                {
+                    "date": 1719322212142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,27 +1,31 @@\n-<?php\n-\n namespace App\\Models;\n \n use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n use Illuminate\\Database\\Eloquent\\Model;\n use Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;\n+use Illuminate\\Database\\Eloquent\\Relations\\HasMany;\n \n class Room extends Model\n {\n-    use HasFactory;\n+use HasFactory;\n \n-    protected $table = 'Kamar';\n+protected $table = 'Kamar';\n \n-    protected $fillable = [\n-        'No_Kamar',\n-        'type_id',\n-        'Harga',\n-        'Is_People',\n-        'Is_Clean',\n-    ];\n+protected $fillable = [\n+'No_Kamar',\n+'type_id',\n+'Harga',\n+'Is_People',\n+'Is_Clean',\n+];\n \n-    public function type(): BelongsTo\n-    {\n-        return $this->belongsTo(Type::class);\n-    }\n+public function type(): BelongsTo\n+{\n+return $this->belongsTo(Type::class);\n+}\n+\n+public function invoices(): HasMany\n+{\n+return $this->hasMany(Invoice::class);\n+}\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1719322231080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+<?php\n+\n namespace App\\Models;\n \n use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n use Illuminate\\Database\\Eloquent\\Model;\n@@ -6,26 +8,26 @@\n use Illuminate\\Database\\Eloquent\\Relations\\HasMany;\n \n class Room extends Model\n {\n-use HasFactory;\n+    use HasFactory;\n \n-protected $table = 'Kamar';\n+    protected $table = 'Kamar';\n \n-protected $fillable = [\n-'No_Kamar',\n-'type_id',\n-'Harga',\n-'Is_People',\n-'Is_Clean',\n-];\n+    protected $fillable = [\n+        'No_Kamar',\n+        'type_id',\n+        'Harga',\n+        'Is_People',\n+        'Is_Clean',\n+    ];\n \n-public function type(): BelongsTo\n-{\n-return $this->belongsTo(Type::class);\n-}\n+    public function type(): BelongsTo\n+    {\n+        return $this->belongsTo(Type::class);\n+    }\n \n-public function invoices(): HasMany\n-{\n-return $this->hasMany(Invoice::class);\n-}\n+    public function invoices(): HasMany\n+    {\n+        return $this->hasMany(Invoice::class);\n+    }\n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1716451824113,

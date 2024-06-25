@@ -19,6 +19,11 @@ class RoomResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-m-building-office';
 
+    protected static ?string $navigationLabel = 'Kamar';
+
+    protected static ?string $pluralModelLabel = 'Kamar';
+    protected static ?string $modelLabel = 'Kamar';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -51,10 +56,10 @@ class RoomResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('no_urut')
-                ->label('No')
-                ->getStateUsing(function ($rowLoop, $record) {
-                    return $rowLoop->iteration;
-                }),
+                    ->label('No')
+                    ->getStateUsing(function ($rowLoop, $record) {
+                        return $rowLoop->iteration;
+                    }),
                 Tables\Columns\TextColumn::make('No_Kamar')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('type.Name')
@@ -71,6 +76,12 @@ class RoomResource extends Resource
                 Tables\Columns\IconColumn::make('Is_Clean')
                     ->label('Dibersihkan')
                     ->boolean(),
+                Tables\Columns\TextColumn::make('invoices.name_customer')
+                    ->label('Nama Pengunjung')
+                    ->sortable()
+                    ->getStateUsing(function ($record) {
+                        return optional($record->invoices->last())->name_customer ?? 'Tidak ada tamu';
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

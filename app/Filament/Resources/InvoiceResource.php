@@ -30,6 +30,11 @@ class InvoiceResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Faktur';
+
+    protected static ?string $pluralModelLabel = 'Faktur';
+    protected static ?string $modelLabel = 'Faktur';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -39,10 +44,12 @@ class InvoiceResource extends Resource
                 Forms\Components\DatePicker::make('check_out')
                     ->required(),
                 Forms\Components\Select::make('room_id')
+                    ->label('No Kamar')
                     ->relationship('room', 'No_Kamar')
                     ->required(),
                 Forms\Components\TextInput::make('name_customer')
                     ->required()
+                    ->label('Nama Pelanggan')
                     ->maxLength(255),
             ]);
     }
@@ -57,10 +64,10 @@ class InvoiceResource extends Resource
                         return $rowLoop->iteration;
                     }),
                 Tables\Columns\TextColumn::make('invoice_number')
-                    ->label('No Invoice')
+                    ->label('No Faktur')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name_customer')
-                    ->label('Nama Pelanggan')
+                    ->label('Nama Pengunjung')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('check_in')
                     ->date()

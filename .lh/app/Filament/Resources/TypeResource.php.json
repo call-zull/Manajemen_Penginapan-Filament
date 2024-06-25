@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1716449626204,
@@ -44,6 +44,18 @@
                 {
                     "date": 1716893097754,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,13 @@\n     public static function table(Table $table): Table\n     {\n         return $table\n             ->columns([\n+                Tables\\Columns\\TextColumn::make('no_urut')\n+                ->label('No')\n+                ->getStateUsing(function ($rowLoop, $record) {\n+                    return $rowLoop->iteration;\n+                }),\n                 Tables\\Columns\\TextColumn::make('Name')\n                     ->label('Nama Tipe Kamar')\n                     ->searchable(),\n                 Tables\\Columns\\TextColumn::make('created_at')\n"
+                },
+                {
+                    "date": 1718433089335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,11 @@\n     protected static ?string $model = Type::class;\n \n     protected static ?string $navigationIcon = 'heroicon-s-building-office-2';\n \n+    protected static ?string $navigationLabel = 'Faktur';\n+\n+\n     public static function form(Form $form): Form\n     {\n         return $form\n             ->schema([\n"
+                },
+                {
+                    "date": 1718433102907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     protected static ?string $model = Type::class;\n \n     protected static ?string $navigationIcon = 'heroicon-s-building-office-2';\n \n-    protected static ?string $navigationLabel = 'Faktur';\n+    protected static ?string $navigationLabel = 'Tipe Kamar';\n \n     public static function form(Form $form): Form\n     {\n         return $form\n"
+                },
+                {
+                    "date": 1718435859982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,10 @@\n     protected static ?string $navigationIcon = 'heroicon-s-building-office-2';\n \n     protected static ?string $navigationLabel = 'Tipe Kamar';\n \n+    protected static ?string $modelLabel = 'Tipe Kamar';\n+\n     public static function form(Form $form): Form\n     {\n         return $form\n             ->schema([\n"
                 }
             ],
             "date": 1716449626204,

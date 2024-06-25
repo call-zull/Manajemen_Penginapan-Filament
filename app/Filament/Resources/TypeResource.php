@@ -19,6 +19,12 @@ class TypeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-building-office-2';
 
+    protected static ?string $navigationLabel = 'Tipe Kamar';
+
+    protected static ?string $pluralModelLabel = 'Tipe Kamar';
+
+    protected static ?string $modelLabel = 'Tipe Kamar';
+
     public static function form(Form $form): Form
     {
         return $form
