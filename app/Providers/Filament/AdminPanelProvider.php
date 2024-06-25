@@ -28,7 +28,9 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandLogo(asset('images/logo_penginapan.jpg'))
+            ->brandLogoHeight('auto')
             ->favicon(asset('images/logo_penginapan.jpg'))
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->colors([
                 'primary' => Color::Amber,
             ])

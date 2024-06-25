@@ -1,0 +1,18 @@
+{
+    "sourceFile": "vite.config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1719325423750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1719325423750,
+            "name": "Commit-0",
+            "content": "import { defineConfig } from 'vite';\nimport laravel from 'laravel-vite-plugin';\n\nexport default defineConfig({\n    plugins: [\n        laravel({\n            input: ['resources/css/app.css', 'resources/css/filament/admin/theme.css','resources/js/app.js'],\n            refresh: true,\n        }),\n    ],\n});\n"
+        }
+    ]
+}

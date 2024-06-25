@@ -1,0 +1,98 @@
+{
+    "sourceFile": "resources/css/filament/admin/theme.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 20,
+            "patches": [
+                {
+                    "date": 1719325828720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1719325852517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,7 @@\n \n @config 'tailwind.config.js';\n \n .fi-logo {\n-    width: 80px; /* Lebar logo 80 pixel */\n-    height: auto; /* Tinggi disesuaikan agar proporsi tetap terjaga */\n+    width: 80px;\n+    height: auto; \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1719325963750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,7 @@\n \n @config 'tailwind.config.js';\n \n .fi-logo {\n-    width: 80px;\n+    width: 160px;\n     height: auto; \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1719325976374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,6 @@\n @config 'tailwind.config.js';\n \n .fi-logo {\n     width: 160px;\n-    height: auto; \n+    height: 160px; \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1719326052791,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,9 @@\n \n .fi-logo {\n     width: 160px;\n     height: 160px; \n+}\n+\n+.fi-simple-header{\n+    height: auto;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1719326141032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,7 @@\n     width: 160px;\n     height: 160px; \n }\n \n-.fi-simple-header{\n+.fi-simple-main{\n     height: auto;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1719326163371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,6 +7,6 @@\n     height: 160px; \n }\n \n .fi-simple-main{\n-    height: auto;\n+    @apply bg-emerald-100/50;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1719326290083,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n @config 'tailwind.config.js';\n \n .fi-logo {\n     width: 160px;\n-    height: 160px; \n+    height: auto; \n }\n \n .fi-simple-main{\n     @apply bg-emerald-100/50;\n"
+                },
+                {
+                    "date": 1719326936496,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,4 @@\n .fi-logo {\n     width: 160px;\n     height: auto; \n }\n-\n-.fi-simple-main{\n-    @apply bg-emerald-100/50;\n-}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1719326946561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,7 @@\n \n @config 'tailwind.config.js';\n \n .fi-logo {\n-    width: 160px;\n+    width: 190px;\n     height: auto; \n }\n"
+                },
+                {
+                    "date": 1719326967798,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,7 @@\n \n @config 'tailwind.config.js';\n \n .fi-logo {\n-    width: 190px;\n+    width: 200px;\n     height: auto; \n }\n"
+                },
+                {
+                    "date": 1719327000004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,5 @@\n @config 'tailwind.config.js';\n \n .fi-logo {\n     width: 200px;\n-    height: auto; \n }\n"
+                },
+                {
+                    "date": 1719327006983,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n \n @config 'tailwind.config.js';\n \n .fi-logo {\n-    width: 200px;\n+    width: 160px;\n }\n"
+                },
+                {
+                    "date": 1719327012993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n \n @config 'tailwind.config.js';\n \n .fi-logo {\n-    width: 160px;\n+    width: 150px;\n }\n"
+                },
+                {
+                    "date": 1719327023683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n \n @config 'tailwind.config.js';\n \n .fi-logo {\n-    width: 150px;\n+    width: 160px;\n }\n"
+                },
+                {
+                    "date": 1719327381864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,4 +4,8 @@\n \n .fi-logo {\n     width: 160px;\n }\n+\n+.fi-sidebar-header{\n+    height: auto;\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1719327541102,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n @config 'tailwind.config.js';\n \n .fi-logo {\n     width: 160px;\n+    border-radius: 50%;\n }\n \n .fi-sidebar-header{\n     height: auto;\n"
+                },
+                {
+                    "date": 1719327565651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n @config 'tailwind.config.js';\n \n .fi-logo {\n     width: 160px;\n-    border-radius: 50%;\n+    border-radius: 53%;\n }\n \n .fi-sidebar-header{\n     height: auto;\n"
+                },
+                {
+                    "date": 1719327573177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n @config 'tailwind.config.js';\n \n .fi-logo {\n     width: 160px;\n-    border-radius: 53%;\n+    border-radius: 58%;\n }\n \n .fi-sidebar-header{\n     height: auto;\n"
+                },
+                {
+                    "date": 1719327580371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n @config 'tailwind.config.js';\n \n .fi-logo {\n     width: 160px;\n-    border-radius: 58%;\n+    border-radius: 60%;\n }\n \n .fi-sidebar-header{\n     height: auto;\n"
+                },
+                {
+                    "date": 1719327627593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n @config 'tailwind.config.js';\n \n .fi-logo {\n     width: 160px;\n-    border-radius: 60%;\n+    border-radius: 50%;\n }\n \n .fi-sidebar-header{\n     height: auto;\n"
+                }
+            ],
+            "date": 1719325828720,
+            "name": "Commit-0",
+            "content": "@import '/vendor/filament/filament/resources/css/theme.css';\n\n@config 'tailwind.config.js';\n\n.fi-logo {\n    width: 80px; /* Lebar logo 80 pixel */\n    height: auto; /* Tinggi disesuaikan agar proporsi tetap terjaga */\n}"
+        }
+    ]
+}
