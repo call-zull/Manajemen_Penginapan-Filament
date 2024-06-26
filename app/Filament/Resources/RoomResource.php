@@ -60,6 +60,7 @@ class RoomResource extends Resource
                 Stack::make([
                     TextColumn::make('No_Kamar')
                         ->label('Nomor Kamar')
+                        ->sortable()
                         ->searchable()
                         ->getStateUsing(function ($record) {
                             return 'No Kamar : ' . $record->No_Kamar;
@@ -72,9 +73,10 @@ class RoomResource extends Resource
                         }),
                     TextColumn::make('Harga')
                         ->label('Harga')
-                        ->prefix('Rp. ')
-                        ->numeric()
-                        ->sortable(),
+                        ->sortable()
+                        ->getStateUsing(function ($record) {
+                            return 'Harga : Rp. ' . number_format($record->Harga, 0, ',', '.');
+                        }),
                     TextColumn::make('Is_People')
                         ->label('Diisi')
                         ->getStateUsing(function ($record) {
