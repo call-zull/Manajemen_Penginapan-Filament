@@ -10,6 +10,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\Layout\Stack;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -55,45 +57,46 @@ class RoomResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('no_urut')
-                    ->label('No')
-                    ->getStateUsing(function ($rowLoop, $record) {
-                        return $rowLoop->iteration;
-                    }),
-                Tables\Columns\TextColumn::make('No_Kamar')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('type.Name')
-                    ->label('Tipe Kamar')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('Harga')
-                    ->prefix('Rp. ')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\IconColumn::make('Is_People')
-                    ->label('Diisi')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('Is_Clean')
-                    ->label('Dibersihkan')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('invoices.name_customer')
-                    ->label('Nama Pengunjung')
-                    ->sortable()
-                    ->getStateUsing(function ($record) {
-                        return optional($record->invoices->last())->name_customer ?? 'Tidak ada tamu';
-                    }),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Stack::make([
+                    TextColumn::make('No_Kamar')
+                        ->label('Nomor Kamar')
+                        ->searchable()
+                        ->getStateUsing(function ($record) {
+                            return 'No Kamar : ' . $record->No_Kamar;
+                        }),
+                    TextColumn::make('type.Name')
+                        ->label('Tipe Kamar')
+                        ->sortable()
+                        ->getStateUsing(function ($record) {
+                            return 'Tipe Kamar : ' . $record->type->Name;
+                        }),
+                    TextColumn::make('Harga')
+                        ->label('Harga')
+                        ->prefix('Rp. ')
+                        ->numeric()
+                        ->sortable(),
+                    TextColumn::make('Is_People')
+                        ->label('Diisi')
+                        ->getStateUsing(function ($record) {
+                            return $record->Is_People ? 'Kamar Diisi' : 'Kamar Kosong';
+                        }),
+                    TextColumn::make('Is_Clean')
+                        ->label('Dibersihkan')
+                        ->getStateUsing(function ($record) {
+                            return $record->Is_Clean ? 'Kamar Dibersihkan' : 'Kamar Belum dibersihkan';
+                        }),
+                    TextColumn::make('invoices.name_customer')
+                        ->label('Nama Pengunjung')
+                        ->sortable()
+                        ->getStateUsing(function ($record) {
+                            $customerName = optional($record->invoices->last())->name_customer;
+                            return 'Pengunjung : ' . ($customerName ?? 'Tidak Ada');
+                        }),
+                ]),
+            ])
+            ->contentGrid([
+                'md' => 2,
+                'xl' => 2,
             ])
             ->filters([
                 //
