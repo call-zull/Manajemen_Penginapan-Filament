@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('No_Kamar');
-            $table->foreignId('type_id')->constrained('types')->cascadeOnDelete();
+            $table->foreignId('type_id')->constrained('types');
             $table->integer('Harga');
-            $table->boolean('Is_People')->default(false);
             $table->boolean('Is_Clean')->default(false);
             $table->timestamps();
             $table->softDeletes();

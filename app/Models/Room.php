@@ -11,13 +11,10 @@ class Room extends Model
 {
     use HasFactory;
 
-    protected $table = 'Kamar';
-
     protected $fillable = [
         'No_Kamar',
         'type_id',
         'Harga',
-        'Is_People',
         'Is_Clean',
     ];
 

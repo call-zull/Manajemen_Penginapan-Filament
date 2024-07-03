@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1716450776090,
@@ -40,6 +40,14 @@
                 {
                     "date": 1716463344913,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     {\n         Schema::create('rooms', function (Blueprint $table) {\n             $table->id();\n             $table->string('No_Kamar');\n-            $table->foreignId('Type_id')->constrained('types')->cascadeOnDelete();\n+            $table->foreignId('type_id')->constrained('types')->cascadeOnDelete();\n             $table->integer('Harga');\n             $table->boolean('Is_People')->default(false);\n             $table->boolean('Is_Clean')->default(false);\n             $table->timestamps();\n"
+                },
+                {
+                    "date": 1719969615469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n             $table->id();\n             $table->string('No_Kamar');\n             $table->foreignId('type_id')->constrained('types')->cascadeOnDelete();\n             $table->integer('Harga');\n-            $table->boolean('Is_People')->default(false);\n             $table->boolean('Is_Clean')->default(false);\n             $table->timestamps();\n             $table->softDeletes();\n         });\n"
+                },
+                {
+                    "date": 1719969881255,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     {\n         Schema::create('rooms', function (Blueprint $table) {\n             $table->id();\n             $table->string('No_Kamar');\n-            $table->foreignId('type_id')->constrained('types')->cascadeOnDelete();\n+            $table->foreignId('type_id')->constrained('types')->;\n             $table->integer('Harga');\n             $table->boolean('Is_Clean')->default(false);\n             $table->timestamps();\n             $table->softDeletes();\n"
                 }
             ],
             "date": 1716450776090,

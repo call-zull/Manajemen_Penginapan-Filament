@@ -2,18 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\RoomResource\Pages;
-use App\Filament\Resources\RoomResource\RelationManagers;
-use App\Models\Room;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Room;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Filament\Tables\Columns\Layout\Stack;
+use Carbon\Carbon;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\Layout\Stack;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\RoomResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\RoomResource\RelationManagers;
 
 class RoomResource extends Resource
 {
@@ -43,9 +46,6 @@ class RoomResource extends Resource
                             ->required()
                             ->label('Harga Kamar')
                             ->numeric(),
-                        Forms\Components\Toggle::make('Is_People')
-                            ->label('Diisi')
-                            ->required(),
                         Forms\Components\Toggle::make('Is_Clean')
                             ->label('Dibersihkan')
                             ->required(),
@@ -77,22 +77,21 @@ class RoomResource extends Resource
                         ->getStateUsing(function ($record) {
                             return 'Harga : Rp. ' . number_format($record->Harga, 0, ',', '.');
                         }),
-                    TextColumn::make('Is_People')
-                        ->label('Diisi')
-                        ->getStateUsing(function ($record) {
-                            return $record->Is_People ? 'Kamar Diisi' : 'Kamar Kosong';
-                        }),
                     TextColumn::make('Is_Clean')
                         ->label('Dibersihkan')
                         ->getStateUsing(function ($record) {
                             return $record->Is_Clean ? 'Kamar Dibersihkan' : 'Kamar Belum dibersihkan';
                         }),
-                    TextColumn::make('invoices.name_customer')
-                        ->label('Nama Pengunjung')
+                    TextColumn::make('Nama Pengunjung')
                         ->sortable()
                         ->getStateUsing(function ($record) {
-                            $customerName = optional($record->invoices->last())->name_customer;
-                            return 'Pengunjung : ' . ($customerName ?? 'Tidak Ada');
+                            $currentDate = Carbon::now();
+                            $latestInvoice = $record->invoices()
+                                ->where('check_out', '>', $currentDate)
+                                ->latest('check_out')
+                                ->first();
+
+                            return 'Pengunjung: ' . ($latestInvoice ? $latestInvoice->name_customer : 'Tidak Ada');
                         }),
                 ]),
             ])
