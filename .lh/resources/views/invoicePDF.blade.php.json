@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 30,
+            "activePatchIndex": 31,
             "patches": [
                 {
                     "date": 1716903081266,
@@ -128,6 +128,10 @@
                 {
                     "date": 1721558874682,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n <body>\r\n     <div class=\"container\">\r\n         <div class=\"header-content\">\r\n             <div class=\"logo\">\r\n-                <img src=\"{{ asset('images/logo_penginapan.jpg') }}\" alt=\"Logo Penginapan\">\r\n+                <img src=\"{{ public_path('images/logo_penginapan.jpg') }}\" alt=\"Logo Penginapan\">\r\n             </div>\r\n             <div class=\"header-text\">\r\n                 <h1>Invoice Penginapan</h1>\r\n                 <h2>Tanggal Cetak: {{ $date }}</h2>\r\n"
+                },
+                {
+                    "date": 1721565431352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,9 +81,9 @@\n                 </tr>\r\n             </thead>\r\n             <tbody>\r\n                 <tr>\r\n-                    <td>{{ $invoice->room->type_id }}</td>\r\n+                    <td>{{ $invoice->room->No_Kamar }}</td>\r\n                     <td>Rp. {{ number_format($invoice->room->Harga, 0, ',', '.') }}</td>\r\n                     <td>Rp. {{ number_format($invoice->total_price, 0, ',', '.') }}</td>\r\n                 </tr>\r\n             </tbody>\r\n"
                 }
             ],
             "date": 1716903081266,

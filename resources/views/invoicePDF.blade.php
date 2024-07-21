@@ -82,7 +82,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ $invoice->room->type_id }}</td>
+                    <td>{{ $invoice->room->No_Kamar }}</td>
                     <td>Rp. {{ number_format($invoice->room->Harga, 0, ',', '.') }}</td>
                     <td>Rp. {{ number_format($invoice->total_price, 0, ',', '.') }}</td>
                 </tr>
