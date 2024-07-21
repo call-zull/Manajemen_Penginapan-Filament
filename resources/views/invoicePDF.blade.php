@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
     <title>Invoice Penginapan</title>
     <style>
         body {
@@ -34,13 +33,28 @@
             max-width: 800px;
             margin: 0 auto;
         }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            height: 100px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Invoice Penginapan</h1>
-        <h2>Tanggal Cetak: {{ $date }}</h2>
-        <h3>Nomor Invoice: {{ $invoice->invoice_number }}</h3>
+        <div class="header-content">
+            <div class="logo">
+                <img src="{{ public_path('images/logo_penginapan.jpg') }}" alt="Logo Penginapan">
+            </div>
+            <div class="header-text">
+                <h1>Invoice Penginapan</h1>
+                <h2>Tanggal Cetak: {{ $date }}</h2>
+                <h3>Nomor Invoice: {{ $invoice->invoice_number }}</h3>
+            </div>
+        </div>
 
         <table>
             <thead>
@@ -68,11 +82,31 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ $invoice->room->No_Kamar }}</td>
+                    <td>{{ $invoice->room->type_id }}</td>
                     <td>Rp. {{ number_format($invoice->room->Harga, 0, ',', '.') }}</td>
                     <td>Rp. {{ number_format($invoice->total_price, 0, ',', '.') }}</td>
                 </tr>
             </tbody>
+        </table>
+    </div>
+
+    <!-- Tambahkan bagian untuk tanda tangan -->
+    <div style="margin-top: 50px;">
+        <table>
+            <tr>
+                <td style="width: 50%; border-bottom: 1px solid #000; padding: 10px;">
+                    <p style="text-align: center;">Tamu</p>
+                    <br>
+                    <br>
+                    <p style="text-align: center;"></p>
+                </td>
+                <td style="width: 50%; border-bottom: 1px solid #000; padding: 10px;">
+                    <p style="text-align: center;">Admin</p>
+                    <br>
+                    <br>
+                    <p style="text-align: center;"></p>
+                </td>
+            </tr>
         </table>
     </div>
 </body>

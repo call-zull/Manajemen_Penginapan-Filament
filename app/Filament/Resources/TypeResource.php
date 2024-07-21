@@ -41,12 +41,15 @@ class TypeResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('no_urut')
-                ->label('No')
-                ->getStateUsing(function ($rowLoop, $record) {
-                    return $rowLoop->iteration;
-                }),
+                    ->label('No')
+                    ->getStateUsing(function ($rowLoop, $record) {
+                        return $rowLoop->iteration;
+                    }),
                 Tables\Columns\TextColumn::make('Name')
                     ->label('Nama Tipe Kamar')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('room.No_Kamar')
+                    ->label('No Kamar')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

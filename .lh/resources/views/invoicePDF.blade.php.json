@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 28,
+            "activePatchIndex": 30,
             "patches": [
                 {
                     "date": 1716903081266,
@@ -120,6 +120,14 @@
                 {
                     "date": 1716913364708,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n     </style>\r\n </head>\r\n <body>\r\n     <div class=\"container\">\r\n-        <h1>Invoice</h1>\r\n+        <h1>Invoice Penginapan</h1>\r\n         <h2>Tanggal Cetak: {{ $date }}</h2>\r\n         <h3>Nomor Invoice: {{ $invoice->invoice_number }}</h3>\r\n \r\n         <table>\r\n"
+                },
+                {
+                    "date": 1721555583621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n <head>\r\n     <meta charset=\"UTF-8\">\r\n     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n     <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n-    @vite('resources/css/app.css')\r\n     <title>Invoice Penginapan</title>\r\n     <style>\r\n         body {\r\n             font-family: Arial, sans-serif;\r\n@@ -33,15 +32,30 @@\n         .container {\r\n             max-width: 800px;\r\n             margin: 0 auto;\r\n         }\r\n+        .header-content {\r\n+            display: flex;\r\n+            justify-content: space-between;\r\n+            align-items: center;\r\n+        }\r\n+        .logo img {\r\n+            height: 100px;\r\n+        }\r\n     </style>\r\n </head>\r\n <body>\r\n     <div class=\"container\">\r\n-        <h1>Invoice Penginapan</h1>\r\n-        <h2>Tanggal Cetak: {{ $date }}</h2>\r\n-        <h3>Nomor Invoice: {{ $invoice->invoice_number }}</h3>\r\n+        <div class=\"header-content\">\r\n+            <div class=\"logo\">\r\n+                <img src=\"{{ asset('images/logo_penginapan.jpg') }}\" alt=\"Logo Penginapan\">\r\n+            </div>\r\n+            <div class=\"header-text\">\r\n+                <h1>Invoice Penginapan</h1>\r\n+                <h2>Tanggal Cetak: {{ $date }}</h2>\r\n+                <h3>Nomor Invoice: {{ $invoice->invoice_number }}</h3>\r\n+            </div>\r\n+        </div>\r\n \r\n         <table>\r\n             <thead>\r\n                 <tr>\r\n@@ -67,13 +81,33 @@\n                 </tr>\r\n             </thead>\r\n             <tbody>\r\n                 <tr>\r\n-                    <td>{{ $invoice->room->No_Kamar }}</td>\r\n+                    <td>{{ $invoice->room->type_id }}</td>\r\n                     <td>Rp. {{ number_format($invoice->room->Harga, 0, ',', '.') }}</td>\r\n                     <td>Rp. {{ number_format($invoice->total_price, 0, ',', '.') }}</td>\r\n                 </tr>\r\n             </tbody>\r\n         </table>\r\n     </div>\r\n+\r\n+    <!-- Tambahkan bagian untuk tanda tangan -->\r\n+    <div style=\"margin-top: 50px;\">\r\n+        <table>\r\n+            <tr>\r\n+                <td style=\"width: 50%; border-bottom: 1px solid #000; padding: 10px;\">\r\n+                    <p style=\"text-align: center;\">Tamu</p>\r\n+                    <br>\r\n+                    <br>\r\n+                    <p style=\"text-align: center;\"></p>\r\n+                </td>\r\n+                <td style=\"width: 50%; border-bottom: 1px solid #000; padding: 10px;\">\r\n+                    <p style=\"text-align: center;\">Admin</p>\r\n+                    <br>\r\n+                    <br>\r\n+                    <p style=\"text-align: center;\"></p>\r\n+                </td>\r\n+            </tr>\r\n+        </table>\r\n+    </div>\r\n </body>\r\n </html>\r\n"
+                },
+                {
+                    "date": 1721558874682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n <body>\r\n     <div class=\"container\">\r\n         <div class=\"header-content\">\r\n             <div class=\"logo\">\r\n-                <img src=\"{{ asset('images/logo_penginapan.jpg') }}\" alt=\"Logo Penginapan\">\r\n+                <img src=\"{{ public_path('images/logo_penginapan.jpg') }}\" alt=\"Logo Penginapan\">\r\n             </div>\r\n             <div class=\"header-text\">\r\n                 <h1>Invoice Penginapan</h1>\r\n                 <h2>Tanggal Cetak: {{ $date }}</h2>\r\n"
                 }
             ],
             "date": 1716903081266,
